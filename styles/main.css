@@ -1,0 +1,134 @@
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../assets/fonts/YekanBakh-Regular/YekanBakh-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Kalameh";
+  src: url("../assets/fonts/kalameh/Kalameh-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Kalamehblack";
+  src: url("../assets/fonts/kalameh/Kalameh-Bold.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* primary colors */
+
+  --color-primary: #2c7ef8;
+  --color-primary-light: #ebf3fe;
+  --color-primary-hover-light: #075cd9;
+  --color-on-primary-light: #ffffff;
+
+  /* secondary colors */
+
+  --color-secondary-black: #000000;
+  --color-secondary-darkgray: #323233;
+  --color-secondary-darkgray-lighter: #646466;
+  --color-secondary-gray: #7d7d7f;
+  --color-secondary-gray-lighter: #afaeb2;
+  --color-secondary-mediumgray: #c8c7cb;
+  --color-secondary-mediumgray-lighter: #e1e0e5;
+  --color-secondary-lightgray: #e1e0e5;
+  --color-secondary-lightgray-lighter: #f5f6f8;
+  --color-secondary-off-white: #fefefe;
+  --color-secondary-white: #ffffff;
+
+  /* background colors */
+
+  --bg-background-light: #ffffff;
+  --bg-on-background-light: #191c1e;
+  --bg-surface-light: #ffffff;
+
+  /* situation colors */
+
+  --color-success: #90f677;
+  --color-error: #e63946;
+
+  /* Font family */
+  --font-main: "Yekanbakh", sans-serif;
+  --font-kalameh: "Kalameh", sans-serif;
+  --font-bold: "Kalamehblack", sans-serif;
+
+  /* Font weights */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-mbold: 700;
+  --fw-bold: 900;
+
+  /* Regular sizes */
+  --fs-r46: 46px;
+  --fs-r20: 20px;
+  --fs-r18: 18px;
+  --fs-r16: 16px;
+  --fs-r15: 15px;
+  --fs-r14: 14px;
+  --fs-r13: 13px;
+  --fs-r12: 12px;
+  --fs-r11: 11px;
+  --fs-r10: 10px;
+
+  /* Medium sizes */
+  --fs-m28: 28px;
+  --fs-m24: 24px;
+  --fs-m20: 20px;
+  --fs-m18: 18px;
+  --fs-m16: 16px;
+  --fs-m15: 15px;
+  --fs-m14: 14px;
+  --fs-m13: 13px;
+  --fs-m12: 12px;
+  --fs-m11: 11px;
+  --fs-m10: 10px;
+
+  /* Bold sizes */
+  --fs-b46: 46px;
+  --fs-b42: 42px;
+  --fs-b36: 36px;
+  --fs-b32: 32px;
+  --fs-b28: 28px;
+  --fs-b24: 24px;
+  --fs-b20: 20px;
+  --fs-b18: 18px;
+  --fs-b16: 16px;
+  --fs-b14: 14px;
+
+  /* Semibold sizes */
+  --fs-s42: 42px;
+  --fs-s40: 40px;
+  --fs-s36: 36px;
+  --fs-s32: 32px;
+  --fs-s28: 28px;
+  --fs-s24: 24px;
+  --fs-s20: 20px;
+  --fs-s18: 18px;
+  --fs-s16: 16px;
+  --fs-s14: 14px;
+  --fs-s13: 13px;
+  --fs-s12: 12px;
+}
+
+body {
+  font-family: "Yekanbakh", sans-serif;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
