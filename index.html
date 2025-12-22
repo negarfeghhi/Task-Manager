@@ -7,81 +7,7 @@
     <title>QueraLandingProject</title>
     <link rel="stylesheet" href="./styles/main.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#74B2EB",
-            },
-            fontFamily: {
-              main: "var(--font-main)",
-              fontKalameh: "var(--font-kalameh)",
-              fontBold: "var(--font-bold)",
-            },
-            fontSize: {
-              /* you can use variable sizes */
-              r46: "var(--fs-r46)",
-              r20: "var(--fs-r20)",
-              r18: "var(--fs-r18)",
-              r16: "var(--fs-r16)",
-              r15: "var(--fs-r15)",
-              r14: "var(--fs-r14)",
-              r13: "var(--fs-r13)",
-              r12: "var(--fs-r12)",
-              r11: "var(--fs-r11)",
-              r10: "var(--fs-r10)",
-
-              /* Medium */
-              m28: "var(--fs-m28)",
-              m24: "var(--fs-m24)",
-              m20: "var(--fs-m20)",
-              m18: "var(--fs-m18)",
-              m16: "var(--fs-m16)",
-              m15: "var(--fs-m15)",
-              m14: "var(--fs-m14)",
-              m13: "var(--fs-m13)",
-              m12: "var(--fs-m12)",
-              m11: "var(--fs-m11)",
-              m10: "var(--fs-m10)",
-
-              /* Bold */
-              b42: "var(--fs-b42)",
-              b36: "var(--fs-b36)",
-              b32: "var(--fs-b32)",
-              b28: "var(--fs-b28)",
-              b24: "var(--fs-b24)",
-              b20: "var(--fs-b20)",
-              b18: "var(--fs-b18)",
-              b16: "var(--fs-b16)",
-              b14: "var(--fs-b14)",
-
-              /* SemiBold */
-              s42: "var(--fs-s42)",
-              s40: "var(--fs-s40)",
-              s36: "var(--fs-s36)",
-              s32: "var(--fs-s32)",
-              s28: "var(--fs-s28)",
-              s24: "var(--fs-s24)",
-              s20: "var(--fs-s20)",
-              s18: "var(--fs-s18)",
-              s16: "var(--fs-s16)",
-              s14: "var(--fs-s14)",
-              s13: "var(--fs-s13)",
-              s12: "var(--fs-s12)",
-            },
-            fontWeight: {
-              regular: "var(--fw-regular)",
-              medium: "var(--fw-medium)",
-              semibold: "var(--fw-semibold)",
-              mbold: "var(--fw-mbold)",
-              bold: "var(--fw-bold)",
-            },
-          },
-        },
-      };
-    </script>
+    <script src="./tailwind.config.js"></script>
   </head>
   <body class="dark:bg-[#000000] dark:text-[#FFFFFF]">
     <!-- header -->
@@ -92,7 +18,7 @@
         <!-- menu-icon -->
         <img
           class="w-[24px] h-[24px] lg:hidden"
-          src="assets/images/menu.png"
+          src="./src/assets/icons/menu.svg"
           alt="menu"
         />
 
@@ -118,19 +44,19 @@
           <button
             class="w-[167px] h-[40px] bg-[--color-primary] rounded-md text-white"
           >
-            <a href="./application.html">ورود به اپلیکیشن</a>
+            <a href="./src/pages/application.html">ورود به اپلیکیشن</a>
           </button>
           <button
             id="darkBtn"
             class="w-[40px] h-[40px] flex justify-center items-center border rounded-md"
           >
             <img
-              src="./assets/icons/toggle-theme.svg"
+              src="./src/assets/icons/toggle-theme.svg"
               alt="mode"
               class="w-[24px] h-[24px] dark:hidden"
             />
             <img
-              src="./assets/icons/toggle-theme-dark.svg"
+              src="./src/assets/icons/toggle-theme-dark.svg"
               alt="mode"
               class="w-[24px] h-[24px] hidden dark:block"
             />
@@ -180,37 +106,37 @@
       <!-- background images -->
       <img
         class="absolute top-[89px] right-[40px] size-[24px] lg:top-[148px] lg:right-[332px] lg:size-[32px]"
-        src="./assets/icons/star.svg"
+        src="./src/assets/icons/star.svg"
         alt="rightstar"
       />
       <img
         class="absolute top-[232px] left-[40px] size-[24px] lg:top-[423px] lg:left-[192px] lg:size-[32px]"
-        src="./assets/icons/star.svg"
+        src="./src/assets/icons/star.svg"
         alt="leftstar"
       />
       <img
         class="absolute top-[205px] left-auto w-[101.42px] h-[21.16px] md:top-[265px] lg:w-[302px] lg:h-[63px] lg:top-[369px] lg:left-auto"
-        src="./assets/icons/line.svg"
+        src="./src/assets/icons/line.svg"
         alt="mobVector"
       />
       <img
         class="lg:hidden absolute top-[63px] left-[0] dark:hidden"
-        src="./assets/images/mobLeftCircle1.png"
+        src="./src/assets/images/mobLeftCircle1.png"
         alt="circletopleft"
       />
       <img
         class="lg:hidden absolute top-[212px] right-[0] size-[228px] dark:hidden"
-        src="./assets/images/bckRightCircle1.png"
+        src="./src/assets/images/bckRightCircle1.png"
         alt="bckRightCircle1"
       />
       <img
         class="hidden lg:block absolute top-[148px] left-[34px] size-[452px] dark:hidden"
-        src="./assets/images/bckLeftCircle1.png"
+        src="./src/assets/images/bckLeftCircle1.png"
         alt="bckLeftCircle1"
       />
       <img
         class="hidden lg:block absolute top-[312px] right-0 size-[452px] dark:hidden"
-        src="./assets/images/bckRightCircle1.png"
+        src="./src/assets/images/bckRightCircle1.png"
         alt="bckLeftCircle1"
       />
     </section>
@@ -225,12 +151,12 @@
       >
         <img
           class="w-full h-full dark:hidden"
-          src="./assets/images/app-web-light.png"
+          src="./src/assets/images/app-web-light.png"
           alt="mainpic"
         />
         <img
           class="w-full h-full hidden dark:block"
-          src="./assets/images/app-web-dark.png"
+          src="./src/assets/images/app-web-dark.png"
           alt="mainpic"
         />
       </div>
@@ -279,12 +205,12 @@
             >
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] dark:hidden"
-                src="./assets/icons/brush.svg"
+                src="./src/assets/icons/brush.svg"
                 alt="brush"
               />
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] hidden dark:block"
-                src="./assets/icons/brush-dark.svg"
+                src="./src/assets/icons/brush-dark.svg"
                 alt="brush"
               />
             </div>
@@ -307,12 +233,12 @@
             >
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] dark:hidden"
-                src="./assets/icons/category.svg"
+                src="./src/assets/icons/category.svg"
                 alt="brush"
               />
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] hidden dark:block"
-                src="./assets/icons/category-dark.svg"
+                src="./src/assets/icons/category-dark.svg"
                 alt="brush"
               />
             </div>
@@ -335,12 +261,12 @@
             >
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] dark:hidden"
-                src="./assets/icons/location-tick.svg"
+                src="./src/assets/icons/location-tick.svg"
                 alt="brush"
               />
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] hidden dark:block"
-                src="./assets/icons/location-tick-dark.svg"
+                src="./src/assets/icons/location-tick-dark.svg"
                 alt="brush"
               />
             </div>
@@ -363,12 +289,12 @@
             >
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] dark:hidden"
-                src="./assets/icons/user-tag.svg"
+                src="./src/assets/icons/user-tag.svg"
                 alt="brush"
               />
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] hidden dark:block"
-                src="./assets/icons/user-tag-dark.svg"
+                src="./src/assets/icons/user-tag-dark.svg"
                 alt="brush"
               />
             </div>
@@ -387,13 +313,13 @@
       <!-- background images -->
       <img
         class="hidden lg:block absolute top-[1438px] right-0 dark:hidden"
-        src="./assets/images/lg-section2-rightCircle.png"
+        src="./src/assets/images/lg-section2-rightCircle.png"
         alt="lg-section2-rightCircle"
       />
 
       <img
         class="hidden lg:block absolute top-[1776px] left-0 dark:hidden"
-        src="./assets/images/lg-section2-leftCircle.png"
+        src="./src/assets/images/lg-section2-leftCircle.png"
         alt="lg-section2-leftCircle"
       />
     </section>
@@ -426,7 +352,7 @@
           <div class="lg:hidden">
             <img
               class="min-w-[190px] min-h-[202px]"
-              src="./assets/images/app-mobile-small-light.png"
+              src="./src/assets/images/app-mobile-small-light.png"
               alt="app-mobile-small-light"
             />
           </div>
@@ -453,7 +379,7 @@
                 >
                 <img
                   class="w-[24px] h-[24px]"
-                  src="./assets/icons/arrow-right.svg"
+                  src="./src/assets/icons/arrow-right.svg"
                   alt="arrow-right"
                 />
               </a>
@@ -466,22 +392,22 @@
           <div>
             <img
               class="min-w-[538px] m-h-[370px] absolute top-0 left-0 dark:hidden"
-              src="./assets/images/app-web-light.png"
+              src="./src/assets/images/app-web-light.png"
               alt="app-web-light"
             />
             <img
               class="min-w-[538px] m-h-[370px] absolute top-0 left-0 hidden dark:block"
-              src="./assets/images/app-web-dark.png"
+              src="./src/assets/images/app-web-dark.png"
               alt="app-web-light"
             />
             <img
               class="min-w-[189.70px] min-h-[394px] absolute top-[33px] left-[288.15px] dark:hidden"
-              src="./assets/images/app-mobile-light.png"
+              src="./src/assets/images/app-mobile-light.png"
               alt="app-mobile-light"
             />
             <img
               class="min-w-[189.70px] min-h-[394px] absolute top-[33px] left-[288.15px] hidden dark:block"
-              src="./assets/images/app-mobile-dark.png"
+              src="./src/assets/images/app-mobile-dark.png"
               alt="app-mobile-light"
             />
           </div>
@@ -518,7 +444,7 @@
             <div class="flex gap-[10px] items-center justify-start">
               <img
                 class="w-[48px] h-[48px]"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -544,7 +470,7 @@
             <div class="flex gap-[10px] items-center justify-start">
               <img
                 class="w-[48px] h-[48px]"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -568,7 +494,7 @@
             <div class="flex gap-[10px] items-center justify-start">
               <img
                 class="w-[48px] h-[48px]"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -599,7 +525,7 @@
             <div class="flex items-center gap-3 mb-3">
               <img
                 class="w-12 h-12"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -626,7 +552,7 @@
             <div class="flex items-center gap-3 mb-3">
               <img
                 class="w-12 h-12"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -651,7 +577,7 @@
             <div class="flex items-center gap-3 mb-3">
               <img
                 class="w-12 h-12"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -678,7 +604,7 @@
             <div class="flex items-center gap-3 mb-3">
               <img
                 class="w-12 h-12"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -703,7 +629,7 @@
             <div class="flex items-center gap-3 mb-3">
               <img
                 class="w-12 h-12"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -730,7 +656,7 @@
             <div class="flex items-center gap-3 mb-3">
               <img
                 class="w-12 h-12"
-                src="./assets/images/user5.png"
+                src="./src/assets/images/user5.png"
                 alt="user5"
               />
               <div>
@@ -756,12 +682,12 @@
             class="size-[32px] lg:size-[40px] flex justify-center items-center border rounded-md"
           >
             <img
-              src="./assets/icons/chevron-right.svg"
+              src="./src/assets/icons/chevron-right.svg"
               alt="chevron-right"
               class="size-[16px] lg:size-[20px] dark:hidden"
             />
             <img
-              src="./assets/icons/chevron-right-dark.svg"
+              src="./src/assets/icons/chevron-right-dark.svg"
               alt="chevron-right-dark"
               class="size-[16px] lg:size-[20px] hidden dark:block"
             />
@@ -770,12 +696,12 @@
             class="size-[32px] lg:size-[40px] flex justify-center items-center border rounded-md"
           >
             <img
-              src="./assets/icons/chevron-left.svg"
+              src="./src/assets/icons/chevron-left.svg"
               alt="chevron-left"
               class="size-[16px] lg:size-[20px] dark:hidden text-[#E3E6E8]"
             />
             <img
-              src="./assets/icons/chevron-left-dark.svg"
+              src="./src/assets/icons/chevron-left-dark.svg"
               alt="chevron-left-dark"
               class="size-[16px] lg:size-[20px] hidden dark:block"
             />
@@ -787,13 +713,13 @@
 
       <img
         class="hidden lg:block absolute top-[3174px] right-0 dark:hidden"
-        src="./assets/images/lg-section4-rightCircle.png"
+        src="./src/assets/images/lg-section4-rightCircle.png"
         alt="lg-section2-rightCircle"
       />
 
       <img
         class="hidden lg:block absolute top-[2560px] left-0 dark:hidden"
-        src="./assets/images/lg-section4-leftCircle.png"
+        src="./src/assets/images/lg-section4-leftCircle.png"
         alt="lg-section2-leftCircle"
       />
     </section>
@@ -814,15 +740,15 @@
       >
         <div class="hidden md:flex flex-col gap-[24px] w-[329px] h-[146px]">
           <div class="flex justify-start items-center gap-[16px]">
-            <img src="./assets/icons/fax.svg" alt="fax" />
+            <img src="./src/assets/icons/fax.svg" alt="fax" />
             <p class="font-regular text-r14">فکس: ۴۴۴۴۵۵۶۶ - ۰۲۱</p>
           </div>
           <div class="flex justify-start items-center gap-[16px]">
-            <img src="./assets/icons/call.svg" alt="call" />
+            <img src="./src/assets/icons/call.svg" alt="call" />
             <p class="font-regular text-r14">تلفن پشتیبانی: ۴۴۴۴۵۵۶۶ - ۰۲۱</p>
           </div>
           <div class="flex justify-start items-center gap-[16px]">
-            <img src="./assets/icons/map.svg" alt="map" />
+            <img src="./src/assets/icons/map.svg" alt="map" />
             <p class="font-regular text-r14">
               آدرس دفتر مرکزی: پونک - خیابان اشرفی اصفهانی - خیابان صبحدل- بن
               بست شب بو
@@ -865,12 +791,12 @@
           >
             <img
               class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] dark:hidden"
-              src="./assets/icons/brush.svg"
+              src="./src/assets/icons/brush.svg"
               alt="brush"
             />
             <img
               class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] hidden dark:block"
-              src="./assets/icons/brush-dark.svg"
+              src="./src/assets/icons/brush-dark.svg"
               alt="brush"
             />
           </div>
@@ -893,12 +819,12 @@
             >
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] dark:hidden"
-                src="./assets/icons/brush.svg"
+                src="./src/assets/icons/brush.svg"
                 alt="brush"
               />
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] hidden dark:block"
-                src="./assets/icons/brush-dark.svg"
+                src="./src/assets/icons/brush-dark.svg"
                 alt="brush"
               />
             </div>
@@ -923,12 +849,12 @@
             >
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] dark:hidden"
-                src="./assets/icons/brush.svg"
+                src="./src/assets/icons/brush.svg"
                 alt="brush"
               />
               <img
                 class="w-[16px] h-[16px] lg:w-[24px] lg:h-[24px] hidden dark:block"
-                src="./assets/icons/brush-dark.svg"
+                src="./src/assets/icons/brush-dark.svg"
                 alt="brush"
               />
             </div>

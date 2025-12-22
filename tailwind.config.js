@@ -1,11 +1,85 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-    content: [
-      "./*.html",
-      "./src/**/*.{html,js}"
-    ],
-    theme: {
-      extend: {},
-    },
-    plugins: [],
-  }
+// /** @type {import('tailwindcss').Config} */
+// module.exports = {
+//     content: [
+//       "./*.html",
+//       "./src/**/*.{html,js}"
+//     ],
+//     theme: {
+//       extend: {},
+//     },
+//     plugins: [],
+//   }
+
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#74B2EB",
+            },
+            fontFamily: {
+              main: "var(--font-main)",
+              fontKalameh: "var(--font-kalameh)",
+              fontBold: "var(--font-bold)",
+            },
+            fontSize: {
+              /* you can use variable sizes */
+              r46: "var(--fs-r46)",
+              r20: "var(--fs-r20)",
+              r18: "var(--fs-r18)",
+              r16: "var(--fs-r16)",
+              r15: "var(--fs-r15)",
+              r14: "var(--fs-r14)",
+              r13: "var(--fs-r13)",
+              r12: "var(--fs-r12)",
+              r11: "var(--fs-r11)",
+              r10: "var(--fs-r10)",
+
+              /* Medium */
+              m28: "var(--fs-m28)",
+              m24: "var(--fs-m24)",
+              m20: "var(--fs-m20)",
+              m18: "var(--fs-m18)",
+              m16: "var(--fs-m16)",
+              m15: "var(--fs-m15)",
+              m14: "var(--fs-m14)",
+              m13: "var(--fs-m13)",
+              m12: "var(--fs-m12)",
+              m11: "var(--fs-m11)",
+              m10: "var(--fs-m10)",
+
+              /* Bold */
+              b42: "var(--fs-b42)",
+              b36: "var(--fs-b36)",
+              b32: "var(--fs-b32)",
+              b28: "var(--fs-b28)",
+              b24: "var(--fs-b24)",
+              b20: "var(--fs-b20)",
+              b18: "var(--fs-b18)",
+              b16: "var(--fs-b16)",
+              b14: "var(--fs-b14)",
+
+              /* SemiBold */
+              s42: "var(--fs-s42)",
+              s40: "var(--fs-s40)",
+              s36: "var(--fs-s36)",
+              s32: "var(--fs-s32)",
+              s28: "var(--fs-s28)",
+              s24: "var(--fs-s24)",
+              s20: "var(--fs-s20)",
+              s18: "var(--fs-s18)",
+              s16: "var(--fs-s16)",
+              s14: "var(--fs-s14)",
+              s13: "var(--fs-s13)",
+              s12: "var(--fs-s12)",
+            },
+            fontWeight: {
+              regular: "var(--fw-regular)",
+              medium: "var(--fw-medium)",
+              semibold: "var(--fw-semibold)",
+              mbold: "var(--fw-mbold)",
+              bold: "var(--fw-bold)",
+            },
+          },
+        },
+      };
