@@ -7,6 +7,7 @@ const addNewTask = document.getElementById("addNewTask-icon")
 const addNewTaskBox = document.getElementById("addNewTask-box")
 const mainImageWhenNoTask = document.getElementById("when-not-todo")
 const newTaskForm = document.getElementById("newTask-form")
+const closeTaskBtn = document.getElementById("closeTask")
 
 // باز کردن سایدبار
 menuBtn.addEventListener("click", () => {
@@ -22,7 +23,11 @@ closeBtn.addEventListener("click", closeSidebar);
 // بستن با کلیک روی بک‌گراند تیره
 overlay.addEventListener("click", closeSidebar);
 
+// open new task form
 addNewTask.addEventListener("click", OpenAndCloseOperators)
+
+// close new task form
+closeTaskBtn.addEventListener("click", closeTaskForm)
 
 // فانکشن بستن
 function closeSidebar() {
@@ -32,12 +37,19 @@ function closeSidebar() {
   overlay.classList.add("hidden");
 }
 
+// function for opening new task form and close addingtaskbox and image
 function OpenAndCloseOperators() {
   addNewTaskBox.classList.add("hidden")
   mainImageWhenNoTask.classList.add("hidden")
   newTaskForm.classList.remove("hidden")
 }
 
+// function for closing task form
+function closeTaskForm () {
+  newTaskForm.classList.add("hidden")
+  addNewTaskBox.classList.remove("hidden")
+  mainImageWhenNoTask.classList.remove("hidden")
+}
 
 //تاریخ امروز به فارسی و جدا شده
 const formatter = new Intl.DateTimeFormat('fa-IR', {
