@@ -8,12 +8,14 @@ const addNewTaskBox = document.getElementById("addNewTask-box")
 const mainImageWhenNoTask = document.getElementById("when-not-todo")
 const newTaskForm = document.getElementById("newTask-form")
 const closeTaskBtn = document.getElementById("closeTask")
+const chooseTagRightBtn = document.getElementById("chooseTag-right-Btn")
+const chooseTagDowntBtn = document.getElementById("chooseTag-down-Btn")
+const tagsBox = document.getElementById("tagsBox")
 
 // باز کردن سایدبار
 menuBtn.addEventListener("click", () => {
   sidebar.classList.remove("translate-x-full");
   sidebar.classList.add("translate-x-0");
-
   overlay.classList.remove("hidden");
 });
 
@@ -29,6 +31,12 @@ addNewTask.addEventListener("click", openNewTaskForm)
 // close new task form
 closeTaskBtn.addEventListener("click", closeTaskForm)
 
+// open tags box
+chooseTagRightBtn.addEventListener("click", chooseTag)
+
+// close tag box
+chooseTagDowntBtn.addEventListener("click", closeTagBox)
+
 // فانکشن بستن
 function closeSidebar() {
   sidebar.classList.remove("translate-x-0");
@@ -43,13 +51,28 @@ function openNewTaskForm() {
   mainImageWhenNoTask.classList.add("hidden")
   newTaskForm.classList.remove("hidden")
 }
- 
+
 
 // function for closing task form
-function closeTaskForm () {
+function closeTaskForm() {
   newTaskForm.classList.add("hidden")
   addNewTaskBox.classList.remove("hidden")
   mainImageWhenNoTask.classList.remove("hidden")
+}
+
+//function for opening tag box
+function chooseTag() {
+  tagsBox.classList.remove('hidden')
+  chooseTagRightBtn.classList.add('hidden')
+  chooseTagDowntBtn.classList.remove('hidden')
+
+}
+
+//function for closing tag box
+function closeTagBox() {
+  tagsBox.classList.add('hidden')
+  chooseTagDowntBtn.classList.add('hidden')
+  chooseTagRightBtn.classList.remove('hidden')
 }
 
 //تاریخ امروز به فارسی و جدا شده

@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Application</title>
-        <script src="../scripts/main.js" defer></script>
-    </head>
-    <link rel="stylesheet" href="../../styles/main.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../../tailwind.config.js"></script>
-    <body class="bg-gray-50 min-h-screen">
-      <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        rel="stylesheet"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application</title>
+    <script src="../scripts/main.js" defer></script>
+  </head>
+  <link rel="stylesheet" href="../../styles/main.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../../tailwind.config.js"></script>
+  <body class="bg-gray-50 min-h-screen">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
     />
-        <!-- header -->
+    <!-- header -->
 
     <header class="p-5 lg:hidden">
       <div
@@ -38,300 +38,261 @@
       </div>
     </header>
 
-        <!-- To Do -->
+    <!-- To Do -->
 
-        <!-- when click queralist  -->
-        <!--for dark-background when open-->
+    <!-- when click queralist  -->
+    <!--for dark-background when open-->
+    <div
+      id="sidebar-overlay"
+      class="fixed inset-0 bg-black/50 hidden z-40"
+    ></div>
+
+    <!-- Sidebar for mobilefirst -->
+    <aside
+      id="sidebar"
+      class="fixed top-0 right-0 h-screen w-[350px] bg-white z-50 translate-x-full transition-transform duration-300"
+    >
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 py-5 border-b">
+        <span class="font-bold text-lg">کوئرا لیست</span>
+        <img
+          id="close-sidebar"
+          src="../assets/icons/SidebarClose.svg"
+          alt="SidebarClose"
+        />
+      </div>
+
+      <!-- Navigation -->
+      <div class="flex flex-col gap-3 px-4 py-6">
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/home.svg"
+            alt="home"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >خانه</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/task.svg"
+            alt="task"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >تسک ها</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/calendar.svg"
+            alt="calendar"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >تقویم</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/report.svg"
+            alt="report"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >گزارشات</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/setting.svg"
+            alt="setting"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >تنظیمات</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/support.svg"
+            alt="support"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >پشتیبانی</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/profile.svg"
+            alt="profile"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >پروفایل</span
+          >
+        </div>
+      </div>
+      <div
+        class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[75%] h-[10px] mx-auto justify-center items-center rounded-md"
+      >
+        <div class="flex bg-white gap-3 rounded-md justify-center px-8 py-2">
+          <img src="../assets/icons/sun.svg" alt="sun" />
+          <span class="text-[#525252]">روشن</span>
+        </div>
         <div
-            id="sidebar-overlay"
-            class="fixed inset-0 bg-black/50 hidden z-40"
-        ></div>
-
-        <!-- Sidebar for mobilefirst -->
-        <aside
-            id="sidebar"
-            class="fixed top-0 right-0 h-screen w-[350px] bg-white z-50 translate-x-full transition-transform duration-300"
+          class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-8 py-2"
         >
-            <!-- Header -->
-            <div class="flex items-center justify-between px-6 py-5 border-b">
-                <span class="font-bold text-lg">کوئرا لیست</span>
-                <img
-                    id="close-sidebar"
-                    src="../assets/icons/SidebarClose.svg"
-                    alt="SidebarClose"
-                />
-            </div>
+          <img src="../assets/icons/moon.svg" alt="moon" />
+          <span class="text-[#808080]">تاریک</span>
+        </div>
+      </div>
+      <div class="border-t-2 w-[75%] mx-auto mt-8"></div>
+      <div class="flex mt-8 w-[75%] mx-auto gap-4">
+        <img src="../assets/icons/logout.svg" alt="logout" />
+        <span class="text-[#525252] font-semibold">خروج</span>
+      </div>
+    </aside>
 
-            <!-- Navigation -->
-            <div class="flex flex-col gap-3 px-4 py-6">
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/home.svg"
-                        alt="home"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >خانه</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/task.svg"
-                        alt="task"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >تسک ها</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/calendar.svg"
-                        alt="calendar"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >تقویم</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/report.svg"
-                        alt="report"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >گزارشات</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/setting.svg"
-                        alt="setting"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >تنظیمات</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/support.svg"
-                        alt="support"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >پشتیبانی</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/profile.svg"
-                        alt="profile"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >پروفایل</span
-                    >
-                </div>
+    <!-- aside for desktop -->
+    <aside
+      class="fixed right-4 bg-white shadow-xl z-50 w-64 hidden lg:block rounded-3xl top-4 bottom-4"
+    >
+      <div class="flex flex-col h-full">
+        <div class="flex flex-col flex-grow">
+          <div
+            class="flex gap-5 justify-start w-[90%] mx-auto p-3 mt-3 items-center"
+          >
+            <img
+              src="../assets/images/user5.png"
+              alt="user5"
+              class="w-12 h-12 rounded-full"
+            />
+            <div class="flex flex-col items-start justify-center gap-2">
+              <span class="font-extrabold text-xl">سلام، رویا</span>
+              <span class="date text-[#7D7D7F] text-lg"></span>
             </div>
+          </div>
+          <div class="flex flex-col gap-2 px-4 py-3">
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/home.svg"
+                alt="home"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >خانه</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/task.svg"
+                alt="task"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >تسک ها</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/calendar.svg"
+                alt="calendar"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >تقویم</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/report.svg"
+                alt="report"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >گزارشات</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/setting.svg"
+                alt="setting"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >تنظیمات</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/support.svg"
+                alt="support"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >پشتیبانی</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/profile.svg"
+                alt="profile"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >پروفایل</span
+              >
+            </div>
+          </div>
+
+          <div class="pb-4">
             <div
-                class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[75%] h-[10px] mx-auto justify-center items-center rounded-md"
+              class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[90%] h-[10px] mx-auto justify-center items-center rounded-md"
             >
-                <div
-                    class="flex bg-white gap-3 rounded-md justify-center px-8 py-2"
-                >
-                    <img src="../assets/icons/sun.svg" alt="sun" />
-                    <span class="text-[#525252]">روشن</span>
-                </div>
-                <div
-                    class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-8 py-2"
-                >
-                    <img src="../assets/icons/moon.svg" alt="moon" />
-                    <span class="text-[#808080]">تاریک</span>
-                </div>
+              <div
+                class="flex bg-white gap-3 rounded-md justify-center px-6 py-2"
+              >
+                <img src="../assets/icons/sun.svg" alt="sun" />
+                <span class="text-[#525252]">روشن</span>
+              </div>
+              <div
+                class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-6 py-2"
+              >
+                <img src="../assets/icons/moon.svg" alt="moon" />
+                <span class="text-[#808080]">تاریک</span>
+              </div>
             </div>
             <div class="border-t-2 w-[75%] mx-auto mt-8"></div>
-            <div class="flex mt-8 w-[75%] mx-auto gap-4">
-                <img src="../assets/icons/logout.svg" alt="logout" />
-                <span class="text-[#525252] font-semibold">خروج</span>
+            <div
+              class="flex mt-2 w-[75%] mx-auto gap-4 py-4 cursor-pointer rounded-md justify-start"
+            >
+              <img
+                src="../assets/icons/logout.svg"
+                alt="logout"
+                class="w-5 h-5"
+              />
+              <span class="text-[#525252] font-semibold">خروج</span>
             </div>
-        </aside>
+          </div>
+        </div>
+      </div>
+    </aside>
 
-        <!-- aside for desktop -->
-        <aside
-            class="fixed right-4 bg-white shadow-xl z-50 w-64 hidden lg:block rounded-3xl top-4 bottom-4"
-        >
-            <div class="flex flex-col h-full">
-                <div class="flex flex-col flex-grow">
-                    <div
-                        class="flex gap-5 justify-start w-[90%] mx-auto p-3 mt-3 items-center"
-                    >
-                        <img
-                            src="../assets/images/user5.png"
-                            alt="user5"
-                            class="w-12 h-12 rounded-full"
-                        />
-                        <div
-                            class="flex flex-col items-start justify-center gap-2"
-                        >
-                            <span class="font-extrabold text-xl"
-                                >سلام، رویا</span
-                            >
-                            <span class="date text-[#7D7D7F] text-lg"></span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-2 px-4 py-3">
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/home.svg"
-                                alt="home"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >خانه</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/task.svg"
-                                alt="task"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >تسک ها</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/calendar.svg"
-                                alt="calendar"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >تقویم</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/report.svg"
-                                alt="report"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >گزارشات</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/setting.svg"
-                                alt="setting"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >تنظیمات</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/support.svg"
-                                alt="support"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >پشتیبانی</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/profile.svg"
-                                alt="profile"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >پروفایل</span
-                            >
-                        </div>
-                    </div>
-
-                    <div class="pb-4">
-                        <div
-                            class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[90%] h-[10px] mx-auto justify-center items-center rounded-md"
-                        >
-                            <div
-                                class="flex bg-white gap-3 rounded-md justify-center px-6 py-2"
-                            >
-                                <img src="../assets/icons/sun.svg" alt="sun" />
-                                <span class="text-[#525252]">روشن</span>
-                            </div>
-                            <div
-                                class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-6 py-2"
-                            >
-                                <img
-                                    src="../assets/icons/moon.svg"
-                                    alt="moon"
-                                />
-                                <span class="text-[#808080]">تاریک</span>
-                            </div>
-                        </div>
-                        <div class="border-t-2 w-[75%] mx-auto mt-8"></div>
-                        <div
-                            class="flex mt-2 w-[75%] mx-auto gap-4 py-4 cursor-pointer rounded-md justify-start"
-                        >
-                            <img
-                                src="../assets/icons/logout.svg"
-                                alt="logout"
-                                class="w-5 h-5"
-                            />
-                            <span class="text-[#525252] font-semibold"
-                                >خروج</span
-                            >
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-        <!-- main mobilefirst and desktop -->
-        <main>
-            <section>
-                <div class="flex gap-5 justify-start w-[90%] mx-auto lg:hidden">
-                    <img src="../assets/images/user5.png" alt="user5" />
-                    <div class="flex flex-col items-start justify-center">
-                        <span class="font-extrabold text-xl">سلام، رویا</span>
-                        <span class="date text-[#7D7D7F] text-lg"></span>
-                    </div>
-                </div>
-                <!-- line -->
-                <div class="border-t-2 w-[90%] mx-auto mt-8 lg:hidden"></div>
+    <!-- main mobilefirst and desktop -->
+    <main>
+      <section>
+        <div class="flex gap-5 justify-start w-[90%] mx-auto lg:hidden">
+          <img src="../assets/images/user5.png" alt="user5" />
+          <div class="flex flex-col items-start justify-center">
+            <span class="font-extrabold text-xl">سلام، رویا</span>
+            <span class="date text-[#7D7D7F] text-lg"></span>
+          </div>
+        </div>
+        <!-- line -->
+        <div class="border-t-2 w-[90%] mx-auto mt-8 lg:hidden"></div>
 
         <!-- tasks -->
         <div
@@ -375,19 +336,20 @@
               <div
                 class="flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
               >
-                <img src="../assets/icons/tag-right.svg" alt="tag-right" />
-                <img
-                  class="hidden"
-                  src="../assets/icons/tag-down.svg"
-                  alt="tag-down"
-                />
+                <button id="chooseTag-right-Btn">
+                  <img src="../assets/icons/tag-right.svg" alt="tag-right" />
+                </button>
+                <button id="chooseTag-down-Btn" class="hidden">
+                  <img src="../assets/icons/tag-down.svg" alt="tag-down" />
+                </button>
                 <span
                   class="font-semibold text-xs text-[--color-secondary-gray-lighter]"
                   >تگ ها</span
                 >
               </div>
               <div
-                class="flex justify-between items-center gap-4 p-[10px] border rounded-lg"
+                id="tagsBox"
+                class="hidden flex justify-between items-center gap-4 p-[10px] border rounded-lg"
               >
                 <div
                   class="bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
@@ -424,123 +386,111 @@
           </div>
         </div>
 
-                <div
-                    id="when-not-todo"
-                    class="flex flex-col w-[60%] mx-auto mt-8 lg:w-[30%] lg:relative lg:right-32"
-                >
-                    <img
-                        src="../assets/icons/main-picture.svg"
-                        alt="picture.svg"
-                    />
-                    <span
-                        class="text-[#7D7D7F] text-center mt-6 font-bold text-[16px]"
-                        >چه کارهایی امروز برای انجام داری؟</span
-                    >
-                    <span class="text-[#AFAEB2] text-center mt-2 text-[14px]"
-                        >میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع
-                        کنی!</span
-                    >
-                </div>
-            </section>
-            <section class="w-full h-screen flex">
-                <div
-                    class="mx-auto w-[328px] h-[297px] md:w-[50%] mt-10 flex flex-col lg:relative lg:right-32"
-                >
-                    <div class="w-full h-[47px]">
-                        <h2 class="text-[16px] font-extrabold text-right mb-1">
-                            تسک‌های انجام شده
-                        </h2>
-                        <h3 class="text-[12px] font-extrabold text-right">
-                            3 تسک را باید انجام دهید.
-                        </h3>
-                    </div>
-                    <div
-                        class="w-full h-[66px] my-4 border-[1px] rounded-[12px] flex justify-between items-center"
-                    >
-                        <div
-                            class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#FFAF37] my-auto"
-                        ></div>
-                        <div
-                            class="flex justify-between text-center items-center gap-4 md:justify-start md:absolute md:pr-4"
-                        >
-                            <div
-                                class="w-[22px] h-[22px] flex justify-center items-center"
-                            >
-                                <input
-                                    type="checkbox"
-                                    class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
-                                    checked
-                                />
-                            </div>
-                            <p
-                                class="font-semibold text-sm line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
-                            >
-                                خرید میوه و سبزیجات و لبنیات برای خانه
-                            </p>
-                        </div>
-                        <div class="ml-4 my-auto flex">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                    </div>
-                    <div
-                        class="w-full h-[66px] mb-4 border-[1px] rounded-[12px] flex text-center justify-between items-center"
-                    >
-                        <div
-                            class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#FF5F37] my-auto"
-                        ></div>
-                        <div
-                            class="flex justify-between text-center items-center gap-4 md:absolute md:pr-4"
-                        >
-                            <div
-                                class="w-[22px] h-[22px] flex justify-center items-center"
-                            >
-                                <input
-                                    type="checkbox"
-                                    class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
-                                    checked
-                                />
-                            </div>
-                            <p
-                                class="text-sm font-extrabold line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
-                            >
-                                تماس با مبل فروشی در مورد تاخیر در ارسال
-                            </p>
-                        </div>
-                        <div class="ml-4 my-auto flex">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                    </div>
-                    <div
-                        class="w-full h-[66px] mb-4 border-[1px] rounded-[12px] flex text-center justify-between items-center"
-                    >
-                        <div
-                            class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#11A483] my-auto"
-                        ></div>
-                        <div
-                            class="flex justify-between text-center items-center gap-4 md:absolute md:pr-4"
-                        >
-                            <div
-                                class="w-[22px] h-[22px] flex justify-center items-center"
-                            >
-                                <input
-                                    type="checkbox"
-                                    class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
-                                    checked
-                                />
-                            </div>
-                            <p
-                                class="text-sm font-semibold line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
-                            >
-                                جلسه با مرتضی در مورد مصاحبه با کارآموز ادمین
-                                پنل
-                            </p>
-                        </div>
-                        <div class="ml-4 my-auto flex">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-    </body>
+        <div
+          id="when-not-todo"
+          class="flex flex-col w-[60%] mx-auto mt-8 lg:w-[30%] lg:relative lg:right-32"
+        >
+          <img src="../assets/icons/main-picture.svg" alt="picture.svg" />
+          <span class="text-[#7D7D7F] text-center mt-6 font-bold text-[16px]"
+            >چه کارهایی امروز برای انجام داری؟</span
+          >
+          <span class="text-[#AFAEB2] text-center mt-2 text-[14px]"
+            >میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!</span
+          >
+        </div>
+      </section>
+      <section class="w-full h-screen flex">
+        <div
+          class="mx-auto w-[328px] h-[297px] md:w-[50%] mt-10 flex flex-col lg:relative lg:right-32"
+        >
+          <div class="w-full h-[47px]">
+            <h2 class="text-[16px] font-extrabold text-right mb-1">
+              تسک‌های انجام شده
+            </h2>
+            <h3 class="text-[12px] font-extrabold text-right">
+              3 تسک را باید انجام دهید.
+            </h3>
+          </div>
+          <div
+            class="w-full h-[66px] my-4 border-[1px] rounded-[12px] flex justify-between items-center"
+          >
+            <div
+              class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#FFAF37] my-auto"
+            ></div>
+            <div
+              class="flex justify-between text-center items-center gap-4 md:justify-start md:absolute md:pr-4"
+            >
+              <div class="w-[22px] h-[22px] flex justify-center items-center">
+                <input
+                  type="checkbox"
+                  class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
+                  checked
+                />
+              </div>
+              <p
+                class="font-semibold text-sm line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
+              >
+                خرید میوه و سبزیجات و لبنیات برای خانه
+              </p>
+            </div>
+            <div class="ml-4 my-auto flex">
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+          </div>
+          <div
+            class="w-full h-[66px] mb-4 border-[1px] rounded-[12px] flex text-center justify-between items-center"
+          >
+            <div
+              class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#FF5F37] my-auto"
+            ></div>
+            <div
+              class="flex justify-between text-center items-center gap-4 md:absolute md:pr-4"
+            >
+              <div class="w-[22px] h-[22px] flex justify-center items-center">
+                <input
+                  type="checkbox"
+                  class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
+                  checked
+                />
+              </div>
+              <p
+                class="text-sm font-extrabold line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
+              >
+                تماس با مبل فروشی در مورد تاخیر در ارسال
+              </p>
+            </div>
+            <div class="ml-4 my-auto flex">
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+          </div>
+          <div
+            class="w-full h-[66px] mb-4 border-[1px] rounded-[12px] flex text-center justify-between items-center"
+          >
+            <div
+              class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#11A483] my-auto"
+            ></div>
+            <div
+              class="flex justify-between text-center items-center gap-4 md:absolute md:pr-4"
+            >
+              <div class="w-[22px] h-[22px] flex justify-center items-center">
+                <input
+                  type="checkbox"
+                  class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
+                  checked
+                />
+              </div>
+              <p
+                class="text-sm font-semibold line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
+              >
+                جلسه با مرتضی در مورد مصاحبه با کارآموز ادمین پنل
+              </p>
+            </div>
+            <div class="ml-4 my-auto flex">
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
