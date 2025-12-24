@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,25 +12,25 @@
   <body class="bg-gray-50 min-h-screen">
     <!-- header -->
 
-    <header class="p-5">
+    <header class="p-5 lg:hidden">
       <div
         class="flex justify-between items-center py-[12px] px-[16px] w-[95%] mx-auto lg:px-[104px] lg:py-[24px] relative bg-white rounded-lg border-1 border-[#f5f6f8] lg:bg-gray-50"
       >
         <!-- menu-icon -->
         <img
-          class="w-[24px] h-[24px] lg:hidden"
+          class="w-[24px] h-[24px]"
           src="../assets/icons/menu.svg"
           alt="menu"
           id="menu-btn"
         />
 
         <!-- header content -->
-        <div class="flex gap-[72px] items-center lg:hidden">
+        <div class="flex gap-[72px] items-center">
           <h3 class="font-semibold text-s20">کوئرا لیست</h3>
         </div>
 
         <!-- create empty place for flex style in mobile -->
-        <div class="lg:hidden"></div>
+        <div></div>
       </div>
     </header>
 
@@ -294,21 +294,94 @@
         <div
           class="flex flex-col w-[90%] mx-auto mt-8 gap-2 lg:w-[50%] lg:mt-0 lg:relative lg:right-32"
         >
+          <!-- title -->
           <span class="font-bold text-[#242424] text-xl"> تسک های امروز </span>
           <span class="text-[#696969] font-normal">
             تسکی برای امروز نداری!
           </span>
           <span id="count-todo-task" class="hidden"></span>
+
+          <!-- new task box -->
           <div
+            id="addNewTask-box"
             class="border-dashed border-[#cccccc] border-2 rounded-lg flex gap-3 items-center justify-start p-5 mt-3"
           >
-            <img src="../assets/icons/add.svg" alt="add" />
+            <button id="addNewTask-icon">
+              <img src="../assets/icons/add.svg" alt="add" />
+            </button>
             <span class="text-[var(--color-primary-hover-light)] font-bold"
               >افزودن وظیفه جدید</span
             >
           </div>
+
+          <!-- add New task -->
+          <div
+            id="newTask-form"
+            class="hidden flex flex-col justify-between items-center gap-2 w-full m-auto border rounded-xl mt-5"
+          >
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 p-4"
+            >
+              <h5 class="font-semibold text-sm text-[--color-secondary-gray]">
+                نام تسک
+              </h5>
+              <span
+                class="font-regular text-xs text-[--color-secondary-gray-lighter]"
+                >توضیحات</span
+              >
+              <div
+                class="flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
+              >
+                <img src="../assets/icons/tag-right.svg" alt="tag-right" />
+                <img
+                  class="hidden"
+                  src="../assets/icons/tag-down.svg"
+                  alt="tag-down"
+                />
+                <span
+                  class="font-semibold text-xs text-[--color-secondary-gray-lighter]"
+                  >تگ ها</span
+                >
+              </div>
+              <div
+                class="flex justify-between items-center gap-4 p-[10px] border rounded-lg"
+              >
+                <div
+                  class="bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                >
+                  پایین
+                </div>
+                <div class="w-px h-[20px] bg-gray-300"></div>
+                <div
+                  class="bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                >
+                  متوسط
+                </div>
+                <div class="w-px h-[20px] bg-gray-300"></div>
+                <div
+                  class="bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                >
+                  بالا
+                </div>
+              </div>
+            </div>
+            <hr class="text-black-50 w-full h-10px" />
+            <div class="w-full flex justify-end items-center">
+              <div class="flex justify-center items-center gap-1 p-4">
+                <button class="p-2 rounded-lg bg-[#F5F5F5]">
+                  <img src="../assets/icons/close.svg" alt="close" />
+                </button>
+                <button
+                  class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
+                >
+                  اضافه کردن تسک
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <!-- image for having no tasks -->
         <div
           id="when-not-todo"
           class="flex flex-col w-[60%] mx-auto mt-8 lg:w-[30%] lg:relative lg:right-32"

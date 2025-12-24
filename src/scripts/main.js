@@ -3,6 +3,10 @@ const menuBtn = document.getElementById("menu-btn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("sidebar-overlay");
 const closeBtn = document.getElementById("close-sidebar");
+const addNewTask = document.getElementById("addNewTask-icon")
+const addNewTaskBox = document.getElementById("addNewTask-box")
+const mainImageWhenNoTask = document.getElementById("when-not-todo")
+const newTaskForm = document.getElementById("newTask-form")
 
 // باز کردن سایدبار
 menuBtn.addEventListener("click", () => {
@@ -18,6 +22,8 @@ closeBtn.addEventListener("click", closeSidebar);
 // بستن با کلیک روی بک‌گراند تیره
 overlay.addEventListener("click", closeSidebar);
 
+addNewTask.addEventListener("click", OpenAndCloseOperators)
+
 // فانکشن بستن
 function closeSidebar() {
   sidebar.classList.remove("translate-x-0");
@@ -26,9 +32,15 @@ function closeSidebar() {
   overlay.classList.add("hidden");
 }
 
+function OpenAndCloseOperators() {
+  addNewTaskBox.classList.add("hidden")
+  mainImageWhenNoTask.classList.add("hidden")
+  newTaskForm.classList.remove("hidden")
+}
+
 
 //تاریخ امروز به فارسی و جدا شده
-  const formatter = new Intl.DateTimeFormat('fa-IR', {
+const formatter = new Intl.DateTimeFormat('fa-IR', {
   weekday: 'long',
   day: 'numeric',
   month: 'long',
