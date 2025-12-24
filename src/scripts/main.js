@@ -24,7 +24,7 @@ closeBtn.addEventListener("click", closeSidebar);
 overlay.addEventListener("click", closeSidebar);
 
 // open new task form
-addNewTask.addEventListener("click", OpenAndCloseOperators)
+addNewTask.addEventListener("click", openNewTaskForm)
 
 // close new task form
 closeTaskBtn.addEventListener("click", closeTaskForm)
@@ -38,11 +38,12 @@ function closeSidebar() {
 }
 
 // function for opening new task form and close addingtaskbox and image
-function OpenAndCloseOperators() {
+function openNewTaskForm() {
   addNewTaskBox.classList.add("hidden")
   mainImageWhenNoTask.classList.add("hidden")
   newTaskForm.classList.remove("hidden")
 }
+ 
 
 // function for closing task form
 function closeTaskForm () {
