@@ -32,6 +32,7 @@ document.addEventListener("click", (e) => {
     addNewTaskBox.classList.add("hidden")
     mainImageWhenNoTask.classList.add("hidden")
     newTaskForm.classList.remove("hidden")
+    newTaskForm.classList.add('flex')
   }
 
   if (e.target.closest('.close-task')) {
@@ -41,6 +42,7 @@ document.addEventListener("click", (e) => {
   }
 
   if (e.target.closest('.toggle-tag')) {
+    tagsBox.classList.add('flex')
     tagsBox.classList.toggle('hidden')
     chooseTagRightBtn.classList.toggle('hidden')
     chooseTagDowntBtn.classList.toggle('hidden')
