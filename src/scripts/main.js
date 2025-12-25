@@ -1,4 +1,4 @@
-// گرفتن المنت‌ها
+// Getting the elements
 const menuBtn = document.getElementById("menu-btn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("sidebar-overlay");
@@ -12,17 +12,17 @@ const chooseTagRightBtn = document.getElementById("chooseTag-right-Btn")
 const chooseTagDowntBtn = document.getElementById("chooseTag-down-Btn")
 const tagsBox = document.getElementById("tagsBox")
 
-// باز کردن سایدبار
+// Open sidebar
 menuBtn.addEventListener("click", () => {
   sidebar.classList.remove("translate-x-full");
   sidebar.classList.add("translate-x-0");
   overlay.classList.remove("hidden");
 });
 
-// بستن سایدبار با دکمه X
+// Close the sidebar with the X button
 closeBtn.addEventListener("click", closeSidebar);
 
-// بستن با کلیک روی بک‌گراند تیره
+// Close by clicking on the dark background
 overlay.addEventListener("click", closeSidebar);
 
 // open new task form
@@ -37,7 +37,7 @@ chooseTagRightBtn.addEventListener("click", chooseTag)
 // close tag box
 chooseTagDowntBtn.addEventListener("click", closeTagBox)
 
-// فانکشن بستن
+// Close function
 function closeSidebar() {
   sidebar.classList.remove("translate-x-0");
   sidebar.classList.add("translate-x-full");
@@ -75,7 +75,7 @@ function closeTagBox() {
   chooseTagRightBtn.classList.remove('hidden')
 }
 
-//تاریخ امروز به فارسی و جدا شده
+// Today's date in Persian and separated
 const formatter = new Intl.DateTimeFormat('fa-IR', {
   weekday: 'long',
   day: 'numeric',
