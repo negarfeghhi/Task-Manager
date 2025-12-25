@@ -2,7 +2,7 @@
 const menuBtn = document.getElementById("menu-btn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("sidebar-overlay");
-const closeBtn = document.getElementById("close-sidebar");
+const closeBtn = document.getElementById("closeSidebar");
 const addNewTask = document.getElementById("addNewTask-icon")
 const addNewTaskBox = document.getElementById("addNewTask-box")
 const mainImageWhenNoTask = document.getElementById("when-not-todo")
@@ -12,6 +12,7 @@ const chooseTagRightBtn = document.getElementById("chooseTag-right-Btn")
 const chooseTagDowntBtn = document.getElementById("chooseTag-down-Btn")
 const tagsBox = document.getElementById("tagsBox")
 
+<<<<<<< HEAD
 // Open sidebar
 menuBtn.addEventListener("click", () => {
   sidebar.classList.remove("translate-x-full");
@@ -24,19 +25,43 @@ closeBtn.addEventListener("click", closeSidebar);
 
 // Close by clicking on the dark background
 overlay.addEventListener("click", closeSidebar);
+=======
 
-// open new task form
-addNewTask.addEventListener("click", openNewTaskForm)
+// Click on elements
+document.addEventListener("click", (e) => {
 
-// close new task form
-closeTaskBtn.addEventListener("click", closeTaskForm)
+  if (e.target.closest('.open-sidebar')) {
+    sidebar.classList.remove("translate-x-full");
+    sidebar.classList.add("translate-x-0");
+    overlay.classList.remove("hidden");
+  }
+>>>>>>> 24c6365c2679c25e607d785c9e53f2ae3fb3eb28
 
-// open tags box
-chooseTagRightBtn.addEventListener("click", chooseTag)
+  if (e.target.closest('.close-sidebar') || e.target === overlay) {
+    sidebar.classList.remove("translate-x-0");
+    sidebar.classList.add("translate-x-full");
+    overlay.classList.add("hidden");
+  }
 
-// close tag box
-chooseTagDowntBtn.addEventListener("click", closeTagBox)
+  if (e.target.closest('.open-task')) {
+    addNewTaskBox.classList.add("hidden")
+    mainImageWhenNoTask.classList.add("hidden")
+    newTaskForm.classList.remove("hidden")
+  }
 
+  if (e.target.closest('.close-task')) {
+    newTaskForm.classList.add("hidden")
+    addNewTaskBox.classList.remove("hidden")
+    mainImageWhenNoTask.classList.remove("hidden")
+  }
+
+  if (e.target.closest('.toggle-tag')) {
+    tagsBox.classList.toggle('hidden')
+    chooseTagRightBtn.classList.toggle('hidden')
+    chooseTagDowntBtn.classList.toggle('hidden')
+  }
+
+<<<<<<< HEAD
 // Close function
 function closeSidebar() {
   sidebar.classList.remove("translate-x-0");
@@ -76,6 +101,12 @@ function closeTagBox() {
 }
 
 // Today's date in Persian and separated
+=======
+})
+
+
+// Get Date
+>>>>>>> 24c6365c2679c25e607d785c9e53f2ae3fb3eb28
 const formatter = new Intl.DateTimeFormat('fa-IR', {
   weekday: 'long',
   day: 'numeric',
