@@ -12,20 +12,6 @@ const chooseTagRightBtn = document.getElementById("chooseTag-right-Btn")
 const chooseTagDowntBtn = document.getElementById("chooseTag-down-Btn")
 const tagsBox = document.getElementById("tagsBox")
 
-<<<<<<< HEAD
-// Open sidebar
-menuBtn.addEventListener("click", () => {
-  sidebar.classList.remove("translate-x-full");
-  sidebar.classList.add("translate-x-0");
-  overlay.classList.remove("hidden");
-});
-
-// Close the sidebar with the X button
-closeBtn.addEventListener("click", closeSidebar);
-
-// Close by clicking on the dark background
-overlay.addEventListener("click", closeSidebar);
-=======
 
 // Click on elements
 document.addEventListener("click", (e) => {
@@ -35,7 +21,6 @@ document.addEventListener("click", (e) => {
     sidebar.classList.add("translate-x-0");
     overlay.classList.remove("hidden");
   }
->>>>>>> 24c6365c2679c25e607d785c9e53f2ae3fb3eb28
 
   if (e.target.closest('.close-sidebar') || e.target === overlay) {
     sidebar.classList.remove("translate-x-0");
@@ -61,52 +46,10 @@ document.addEventListener("click", (e) => {
     chooseTagDowntBtn.classList.toggle('hidden')
   }
 
-<<<<<<< HEAD
-// Close function
-function closeSidebar() {
-  sidebar.classList.remove("translate-x-0");
-  sidebar.classList.add("translate-x-full");
-
-  overlay.classList.add("hidden");
-}
-
-// function for opening new task form and close addingtaskbox and image
-function openNewTaskForm() {
-  addNewTaskBox.classList.add("hidden")
-  mainImageWhenNoTask.classList.add("hidden")
-  newTaskForm.classList.remove("hidden")
-}
-
-
-// function for closing task form
-function closeTaskForm() {
-  newTaskForm.classList.add("hidden")
-  addNewTaskBox.classList.remove("hidden")
-  mainImageWhenNoTask.classList.remove("hidden")
-}
-
-//function for opening tag box
-function chooseTag() {
-  tagsBox.classList.remove('hidden')
-  chooseTagRightBtn.classList.add('hidden')
-  chooseTagDowntBtn.classList.remove('hidden')
-
-}
-
-//function for closing tag box
-function closeTagBox() {
-  tagsBox.classList.add('hidden')
-  chooseTagDowntBtn.classList.add('hidden')
-  chooseTagRightBtn.classList.remove('hidden')
-}
-
-// Today's date in Persian and separated
-=======
 })
 
 
 // Get Date
->>>>>>> 24c6365c2679c25e607d785c9e53f2ae3fb3eb28
 const formatter = new Intl.DateTimeFormat('fa-IR', {
   weekday: 'long',
   day: 'numeric',
