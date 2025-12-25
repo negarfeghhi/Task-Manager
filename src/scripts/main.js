@@ -1,8 +1,8 @@
-// گرفتن المنت‌ها
+// get element
 const menuBtn = document.getElementById("menu-btn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("sidebar-overlay");
-const closeBtn = document.getElementById("close-sidebar");
+const closeBtn = document.getElementById("closeSidebar");
 const addNewTask = document.getElementById("addNewTask-icon")
 const addNewTaskBox = document.getElementById("addNewTask-box")
 const mainImageWhenNoTask = document.getElementById("when-not-todo")
@@ -12,70 +12,44 @@ const chooseTagRightBtn = document.getElementById("chooseTag-right-Btn")
 const chooseTagDowntBtn = document.getElementById("chooseTag-down-Btn")
 const tagsBox = document.getElementById("tagsBox")
 
-// باز کردن سایدبار
-menuBtn.addEventListener("click", () => {
-  sidebar.classList.remove("translate-x-full");
-  sidebar.classList.add("translate-x-0");
-  overlay.classList.remove("hidden");
-});
 
-// بستن سایدبار با دکمه X
-closeBtn.addEventListener("click", closeSidebar);
+// Click on elements
+document.addEventListener("click", (e) => {
 
-// بستن با کلیک روی بک‌گراند تیره
-overlay.addEventListener("click", closeSidebar);
+  if (e.target.closest('.open-sidebar')) {
+    sidebar.classList.remove("translate-x-full");
+    sidebar.classList.add("translate-x-0");
+    overlay.classList.remove("hidden");
+  }
 
-// open new task form
-addNewTask.addEventListener("click", openNewTaskForm)
+  if (e.target.closest('.close-sidebar') || e.target === overlay) {
+    sidebar.classList.remove("translate-x-0");
+    sidebar.classList.add("translate-x-full");
+    overlay.classList.add("hidden");
+  }
 
-// close new task form
-closeTaskBtn.addEventListener("click", closeTaskForm)
+  if (e.target.closest('.open-task')) {
+    addNewTaskBox.classList.add("hidden")
+    mainImageWhenNoTask.classList.add("hidden")
+    newTaskForm.classList.remove("hidden")
+  }
 
-// open tags box
-chooseTagRightBtn.addEventListener("click", chooseTag)
+  if (e.target.closest('.close-task')) {
+    newTaskForm.classList.add("hidden")
+    addNewTaskBox.classList.remove("hidden")
+    mainImageWhenNoTask.classList.remove("hidden")
+  }
 
-// close tag box
-chooseTagDowntBtn.addEventListener("click", closeTagBox)
+  if (e.target.closest('.toggle-tag')) {
+    tagsBox.classList.toggle('hidden')
+    chooseTagRightBtn.classList.toggle('hidden')
+    chooseTagDowntBtn.classList.toggle('hidden')
+  }
 
-// فانکشن بستن
-function closeSidebar() {
-  sidebar.classList.remove("translate-x-0");
-  sidebar.classList.add("translate-x-full");
-
-  overlay.classList.add("hidden");
-}
-
-// function for opening new task form and close addingtaskbox and image
-function openNewTaskForm() {
-  addNewTaskBox.classList.add("hidden")
-  mainImageWhenNoTask.classList.add("hidden")
-  newTaskForm.classList.remove("hidden")
-}
+})
 
 
-// function for closing task form
-function closeTaskForm() {
-  newTaskForm.classList.add("hidden")
-  addNewTaskBox.classList.remove("hidden")
-  mainImageWhenNoTask.classList.remove("hidden")
-}
-
-//function for opening tag box
-function chooseTag() {
-  tagsBox.classList.remove('hidden')
-  chooseTagRightBtn.classList.add('hidden')
-  chooseTagDowntBtn.classList.remove('hidden')
-
-}
-
-//function for closing tag box
-function closeTagBox() {
-  tagsBox.classList.add('hidden')
-  chooseTagDowntBtn.classList.add('hidden')
-  chooseTagRightBtn.classList.remove('hidden')
-}
-
-//تاریخ امروز به فارسی و جدا شده
+// Get Date
 const formatter = new Intl.DateTimeFormat('fa-IR', {
   weekday: 'long',
   day: 'numeric',

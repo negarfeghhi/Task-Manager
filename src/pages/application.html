@@ -22,7 +22,7 @@
       >
         <!-- menu-icon -->
         <img
-          class="w-[24px] h-[24px]"
+          class="open-sidebar w-[24px] h-[24px]"
           src="../assets/icons/menu.svg"
           alt="menu"
           id="menu-btn"
@@ -56,7 +56,8 @@
       <div class="flex items-center justify-between px-6 py-5 border-b">
         <span class="font-bold text-lg">کوئرا لیست</span>
         <img
-          id="close-sidebar"
+          class="close-sidebar"
+          id="closeSidebar"
           src="../assets/icons/SidebarClose.svg"
           alt="SidebarClose"
         />
@@ -310,7 +311,7 @@
             id="addNewTask-box"
             class="border-dashed border-[#cccccc] border-2 rounded-lg flex gap-3 items-center justify-start p-5 mt-3"
           >
-            <button id="addNewTask-icon">
+            <button id="addNewTask-icon" class="open-task">
               <img src="../assets/icons/add.svg" alt="add" />
             </button>
             <span class="text-[var(--color-primary-hover-light)] font-bold"
@@ -336,10 +337,10 @@
               <div
                 class="flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
               >
-                <button id="chooseTag-right-Btn">
+                <button id="chooseTag-right-Btn" class="toggle-tag">
                   <img src="../assets/icons/tag-right.svg" alt="tag-right" />
                 </button>
-                <button id="chooseTag-down-Btn" class="hidden">
+                <button id="chooseTag-down-Btn" class="toggle-tag hidden">
                   <img src="../assets/icons/tag-down.svg" alt="tag-down" />
                 </button>
                 <span
@@ -352,19 +353,19 @@
                 class="hidden flex justify-between items-center gap-4 p-[10px] border rounded-lg"
               >
                 <div
-                  class="bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                  class="tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
                 >
                   پایین
                 </div>
                 <div class="w-px h-[20px] bg-gray-300"></div>
                 <div
-                  class="bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                  class="tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
                 >
                   متوسط
                 </div>
                 <div class="w-px h-[20px] bg-gray-300"></div>
                 <div
-                  class="bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                  class="tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
                 >
                   بالا
                 </div>
@@ -373,7 +374,7 @@
             <hr class="text-black-50 w-full h-10px" />
             <div class="w-full flex justify-end items-center">
               <div class="flex justify-center items-center gap-1 p-4">
-                <button id="closeTask" class="p-2 rounded-lg bg-[#F5F5F5]">
+                <button id="closeTask" class="close-task p-2 rounded-lg bg-[#F5F5F5]">
                   <img src="../assets/icons/close.svg" alt="close" />
                 </button>
                 <button
