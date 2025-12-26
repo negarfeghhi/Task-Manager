@@ -318,7 +318,7 @@
               >افزودن وظیفه جدید</span
             >
           </div>
-          
+
           <!-- add New task -->
           <div
             id="newTask-form"
@@ -327,13 +327,16 @@
             <div
               class="w-full flex flex-col justify-center items-start gap-4 p-4"
             >
-              <h5 class="font-semibold text-sm text-[--color-secondary-gray]">
-                نام تسک
-              </h5>
-              <span
-                class="font-regular text-xs text-[--color-secondary-gray-lighter]"
-                >توضیحات</span
-              >
+              <input
+                id="taskTitle-inp"
+                class="font-semibold text-sm text-[--color-secondary-gray] bg-gray-50 w-full"
+                placeholder="نام تسک"
+              />
+              <input
+                id="taskDesc-inp"
+                class="font-regular text-xs text-[--color-secondary-gray-lighter] bg-gray-50 w-full"
+                placeholder="توضیحات"
+              />
               <div
                 class="flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
               >
@@ -374,10 +377,14 @@
             <hr class="text-black-50 w-full h-10px" />
             <div class="w-full flex justify-end items-center">
               <div class="flex justify-center items-center gap-1 p-4">
-                <button id="closeTask" class="close-task p-2 rounded-lg bg-[#F5F5F5]">
+                <button
+                  id="closeTask"
+                  class="close-task p-2 rounded-lg bg-[#F5F5F5]"
+                >
                   <img src="../assets/icons/close.svg" alt="close" />
                 </button>
                 <button
+                id="addTask-btn"
                   class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
                 >
                   اضافه کردن تسک
@@ -400,6 +407,13 @@
           >
         </div>
       </section>
+
+      <section>
+        <div id="todo-task" class="bg-gray-300 text-white w-full">
+
+        </div>
+      </section>
+
       <!-- Section for completed or ongoing parts -->
       <section class="w-full h-screen flex">
         <div

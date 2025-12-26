@@ -11,6 +11,53 @@ const closeTaskBtn = document.getElementById("closeTask")
 const chooseTagRightBtn = document.getElementById("chooseTag-right-Btn")
 const chooseTagDowntBtn = document.getElementById("chooseTag-down-Btn")
 const tagsBox = document.getElementById("tagsBox")
+const addTaskBtn = document.getElementById("addTask-btn")
+const taskTitle = document.getElementById("taskTitle-inp")
+const taskDesc = document.getElementById("taskDesc-inp")
+const taskTags = document.querySelectorAll(".tag")
+const tasksContainer =document.getElementById('todo-task')
+
+let taskArray = []
+
+let mainTag = ''
+  taskTags.forEach(tag => tag.addEventListener('click' , (e) => {
+   mainTag = e.target.textContent.trim('')    
+  }))
+
+addTaskBtn.addEventListener('click', ()=>{
+  
+  let title = taskTitle.value
+  let desc = taskDesc.value
+  let newTaskObj = {
+    id:1,
+    title,
+    desc,
+    mainTag,
+  }
+  
+  taskArray.push(newTaskObj)
+  generateTasks(taskArray)
+  
+})
+
+function generateTasks (taskArray) {
+  taskArray.forEach(task => {
+
+    let newtaskh1 = document.createElement('h1')
+    
+    newtaskh1.innerHTML = task.title
+
+
+    tasksContainer.append(newtaskh1)
+  })
+}
+
+
+
+
+
+
+
 
 
 // Click on elements
