@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -301,10 +301,9 @@
         >
           <!-- title -->
           <span class="font-bold text-[#242424] text-xl"> تسک های امروز </span>
-          <span class="text-[#696969] font-normal">
+          <span class="text-[#696969] font-normal" id="count-todo-task">
             تسکی برای امروز نداری!
           </span>
-          <span id="count-todo-task" class="hidden"></span>
 
           <!-- new task box -->
           <div
@@ -329,16 +328,25 @@
             >
               <input
                 id="taskTitle-inp"
-                class="font-semibold text-sm text-[--color-secondary-gray] bg-gray-50 w-full"
+                class="font-semibold text-lg text-[#7d7d7f] bg-gray-50 w-full focus:outline-none focus:ring-0"
                 placeholder="نام تسک"
               />
               <input
                 id="taskDesc-inp"
-                class="font-regular text-xs text-[--color-secondary-gray-lighter] bg-gray-50 w-full"
+                class="font-regular text-sm text-[#afaeb2] bg-gray-50 w-full focus:outline-none focus:ring-0"
                 placeholder="توضیحات"
               />
+
+              <!-- selected tag -->
+              <div
+                class="py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1 hidden"
+                id="selected"
+              >
+                <img src="../assets/icons/close.svg" alt="close" />
+              </div>
               <div
                 class="flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
+                id="hideTgs"
               >
                 <button id="chooseTag-right-Btn" class="toggle-tag">
                   <img src="../assets/icons/tag-right.svg" alt="tag-right" />
@@ -356,19 +364,19 @@
                 class="hidden justify-between items-center gap-4 p-[10px] border rounded-lg"
               >
                 <div
-                  class="tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                  class="tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
                 >
                   پایین
                 </div>
                 <div class="w-px h-[20px] bg-gray-300"></div>
                 <div
-                  class="tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                  class="tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
                 >
                   متوسط
                 </div>
                 <div class="w-px h-[20px] bg-gray-300"></div>
                 <div
-                  class="tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs"
+                  class="tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
                 >
                   بالا
                 </div>
@@ -384,7 +392,7 @@
                   <img src="../assets/icons/close.svg" alt="close" />
                 </button>
                 <button
-                id="addTask-btn"
+                  id="addTask-btn"
                   class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
                 >
                   اضافه کردن تسک
@@ -408,13 +416,61 @@
         </div>
       </section>
 
-      <section>
-        <div id="todo-task" class="bg-gray-300 text-white w-full">
+      <!-- section for adding new tasks that need to be done -->
+      <section class="flex w-full">
+        <div
+          id="tasksContainer"
+          class="mx-auto md:w-[50%] mt-10 flex-col lg:relative lg:right-32 w-[328px] hidden"
+        ></div>
 
+        <div
+          id="taskTemplate"
+          class="w-full my-4 border-[1px] rounded-[12px] justify-between items-center lg:py-4 py-[18px] hidden"
+        >
+          <!-- color -->
+          <div
+            class="w-[4px] h-[50px] rounded-tl-[8px] rounded-bl-[8px] my-auto"
+            id="newTask-color"
+          ></div>
+
+          <div
+            class="flex justify-start text-center items-start gap-3 absolute pr-7 lg:pr-4"
+          >
+            <div class="w-[22px] h-[22px] flex justify-center items-center">
+              <input
+                type="checkbox"
+                class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
+              />
+            </div>
+
+            <!-- div for title & decription -->
+            <div class="flex flex-col gap-1">
+              <div
+                class="flex flex-col gap-1 md:flex-row md:items-center md:gap-3"
+              >
+                <h3
+                  class="text-right md:whitespace-nowrap font-bold text-lg text-[#242424]"
+                  id="newTask-title"
+                ></h3>
+                <span
+                  class="w-14 self-start md:self-auto rounded-[4px] font-bold text-xs py-[2px] px-[8px]"
+                  id="newTask-tag"
+                >
+                </span>
+              </div>
+              <h4
+                class="font-semibold text-sm text-right items-center md:whitespace-nowrap text-[#727272]"
+                id="newTask-desc"
+              ></h4>
+            </div>
+          </div>
+          <button class="ml-4 self-start">
+            <i class="fas fa-ellipsis-v"></i>
+          </button>
         </div>
       </section>
 
-      <!-- Section for completed or ongoing parts -->
+      <!-- Section for completed  -->
       <section class="w-full h-screen flex">
         <div
           class="mx-auto w-[328px] h-[297px] md:w-[50%] mt-10 flex flex-col lg:relative lg:right-32"
