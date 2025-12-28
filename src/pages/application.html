@@ -1,587 +1,618 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Application</title>
-        <script src="../scripts/main.js" defer></script>
-    </head>
-    <link rel="stylesheet" href="../../styles/main.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../../tailwind.config.js"></script>
-    <body class="bg-gray-50 min-h-screen">
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-            rel="stylesheet"
+    <link rel="stylesheet" href="../../styles/main.css" />
+    <script src="../scripts/main.js" defer></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-gray-50 min-h-screen">
+    <!-- header -->
+
+    <header class="p-5 lg:hidden">
+      <div
+        class="flex justify-between items-center py-[12px] px-[16px] w-[95%] mx-auto lg:px-[104px] lg:py-[24px] relative bg-white rounded-lg border-1 border-[#f5f6f8] lg:bg-gray-50"
+      >
+        <!-- menu-icon -->
+        <img
+          class="open-sidebar w-[24px] h-[24px]"
+          src="../assets/icons/menu.svg"
+          alt="menu"
+          id="menu-btn"
         />
-        <!-- header -->
 
-        <header class="p-5 lg:hidden">
-            <div
-                class="flex justify-between items-center py-[12px] px-[16px] w-[95%] mx-auto lg:px-[104px] lg:py-[24px] relative bg-white rounded-lg border-1 border-[#f5f6f8] lg:bg-gray-50"
-            >
-                <!-- menu-icon -->
-                <img
-                    class="open-sidebar w-[24px] h-[24px]"
-                    src="../assets/icons/menu.svg"
-                    alt="menu"
-                    id="menu-btn"
-                />
+        <!-- header content -->
+        <div class="flex gap-[72px] items-center">
+          <h3 class="font-semibold text-s20">کوئرا لیست</h3>
+        </div>
 
-                <!-- header content -->
-                <div class="flex gap-[72px] items-center">
-                    <h3 class="font-semibold text-s20">کوئرا لیست</h3>
-                </div>
+        <!-- create empty place for flex style in mobile -->
+        <div></div>
+      </div>
+    </header>
 
-                <!-- create empty place for flex style in mobile -->
-                <div></div>
-            </div>
-        </header>
+    <!-- To Do -->
 
-        <!-- To Do -->
+    <!-- when click queralist  -->
+    <!--for dark-background when open-->
+    <div
+      id="sidebar-overlay"
+      class="fixed inset-0 bg-black/50 hidden z-40"
+    ></div>
 
-        <!-- when click queralist  -->
-        <!--for dark-background when open-->
+    <!-- Sidebar for mobilefirst -->
+    <aside
+      id="sidebar"
+      class="fixed top-0 right-0 h-screen w-[350px] bg-white z-50 translate-x-full transition-transform duration-300"
+    >
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 py-5 border-b">
+        <span class="font-bold text-lg">کوئرا لیست</span>
+        <img
+          class="close-sidebar"
+          id="closeSidebar"
+          src="../assets/icons/SidebarClose.svg"
+          alt="SidebarClose"
+        />
+      </div>
+
+      <!-- Navigation -->
+      <div class="flex flex-col gap-3 px-4 py-6">
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/home.svg"
+            alt="home"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >خانه</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/task.svg"
+            alt="task"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >تسک ها</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/calendar.svg"
+            alt="calendar"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >تقویم</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/report.svg"
+            alt="report"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >گزارشات</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/setting.svg"
+            alt="setting"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >تنظیمات</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/support.svg"
+            alt="support"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >پشتیبانی</span
+          >
+        </div>
+        <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+          <img
+            src="../assets/icons/profile.svg"
+            alt="profile"
+            class="w-[20px] h-[20px]"
+          />
+          <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+            >پروفایل</span
+          >
+        </div>
+      </div>
+      <div
+        class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[75%] h-[10px] mx-auto justify-center items-center rounded-md"
+      >
+        <div class="flex bg-white gap-3 rounded-md justify-center px-8 py-2">
+          <img src="../assets/icons/sun.svg" alt="sun" />
+          <span class="text-[#525252]">روشن</span>
+        </div>
         <div
-            id="sidebar-overlay"
-            class="fixed inset-0 bg-black/50 hidden z-40"
-        ></div>
-
-        <!-- Sidebar for mobilefirst -->
-        <aside
-            id="sidebar"
-            class="fixed top-0 right-0 h-screen w-[350px] bg-white z-50 translate-x-full transition-transform duration-300"
+          class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-8 py-2"
         >
-            <!-- Header -->
-            <div class="flex items-center justify-between px-6 py-5 border-b">
-                <span class="font-bold text-lg">کوئرا لیست</span>
-                <img
-                    class="close-sidebar"
-                    id="closeSidebar"
-                    src="../assets/icons/SidebarClose.svg"
-                    alt="SidebarClose"
-                />
-            </div>
+          <img src="../assets/icons/moon.svg" alt="moon" />
+          <span class="text-[#808080]">تاریک</span>
+        </div>
+      </div>
+      <div class="border-t-2 w-[75%] mx-auto mt-8"></div>
+      <div class="flex mt-8 w-[75%] mx-auto gap-4">
+        <img src="../assets/icons/logout.svg" alt="logout" />
+        <span class="text-[#525252] font-semibold">خروج</span>
+      </div>
+    </aside>
 
-            <!-- Navigation -->
-            <div class="flex flex-col gap-3 px-4 py-6">
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/home.svg"
-                        alt="home"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >خانه</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/task.svg"
-                        alt="task"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >تسک ها</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/calendar.svg"
-                        alt="calendar"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >تقویم</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/report.svg"
-                        alt="report"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >گزارشات</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/setting.svg"
-                        alt="setting"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >تنظیمات</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/support.svg"
-                        alt="support"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >پشتیبانی</span
-                    >
-                </div>
-                <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
-                    <img
-                        src="../assets/icons/profile.svg"
-                        alt="profile"
-                        class="w-[20px] h-[20px]"
-                    />
-                    <span
-                        class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                        >پروفایل</span
-                    >
-                </div>
+    <!-- aside for desktop -->
+    <aside
+      class="fixed right-4 bg-white shadow-xl z-50 w-64 hidden lg:block rounded-3xl top-4 bottom-4"
+    >
+      <div class="flex flex-col h-full">
+        <div class="flex flex-col flex-grow">
+          <div
+            class="flex gap-5 justify-start w-[90%] mx-auto p-3 mt-3 items-center"
+          >
+            <img
+              src="../assets/images/user5.png"
+              alt="user5"
+              class="w-12 h-12 rounded-full"
+            />
+            <div class="flex flex-col items-start justify-center gap-2">
+              <span class="font-extrabold text-xl">سلام، رویا</span>
+              <span class="date text-[#7D7D7F] text-lg"></span>
             </div>
+          </div>
+          <div class="flex flex-col gap-2 px-4 py-3">
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/home.svg"
+                alt="home"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >خانه</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/task.svg"
+                alt="task"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >تسک ها</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/calendar.svg"
+                alt="calendar"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >تقویم</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/report.svg"
+                alt="report"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >گزارشات</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/setting.svg"
+                alt="setting"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >تنظیمات</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/support.svg"
+                alt="support"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >پشتیبانی</span
+              >
+            </div>
+            <div class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]">
+              <img
+                src="../assets/icons/profile.svg"
+                alt="profile"
+                class="w-[20px] h-[20px]"
+              />
+              <span class="font-semibold hover:text-[#007BFF] text-[#525252]"
+                >پروفایل</span
+              >
+            </div>
+          </div>
+
+          <div class="pb-4">
             <div
-                class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[75%] h-[10px] mx-auto justify-center items-center rounded-md"
+              class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[90%] h-[10px] mx-auto justify-center items-center rounded-md"
             >
-                <div
-                    class="flex bg-white gap-3 rounded-md justify-center px-8 py-2"
-                >
-                    <img src="../assets/icons/sun.svg" alt="sun" />
-                    <span class="text-[#525252]">روشن</span>
-                </div>
-                <div
-                    class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-8 py-2"
-                >
-                    <img src="../assets/icons/moon.svg" alt="moon" />
-                    <span class="text-[#808080]">تاریک</span>
-                </div>
+              <div
+                class="flex bg-white gap-3 rounded-md justify-center px-6 py-2"
+              >
+                <img src="../assets/icons/sun.svg" alt="sun" />
+                <span class="text-[#525252]">روشن</span>
+              </div>
+              <div
+                class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-6 py-2"
+              >
+                <img src="../assets/icons/moon.svg" alt="moon" />
+                <span class="text-[#808080]">تاریک</span>
+              </div>
             </div>
             <div class="border-t-2 w-[75%] mx-auto mt-8"></div>
-            <div class="flex mt-8 w-[75%] mx-auto gap-4">
-                <img src="../assets/icons/logout.svg" alt="logout" />
-                <span class="text-[#525252] font-semibold">خروج</span>
+            <div
+              class="flex mt-2 w-[75%] mx-auto gap-4 py-4 cursor-pointer rounded-md justify-start"
+            >
+              <img
+                src="../assets/icons/logout.svg"
+                alt="logout"
+                class="w-5 h-5"
+              />
+              <span class="text-[#525252] font-semibold">خروج</span>
             </div>
-        </aside>
+          </div>
+        </div>
+      </div>
+    </aside>
 
-        <!-- aside for desktop -->
-        <aside
-            class="fixed right-4 bg-white shadow-xl z-50 w-64 hidden lg:block rounded-3xl top-4 bottom-4"
+    <!-- main mobilefirst and desktop -->
+    <main>
+      <section>
+        <div class="flex gap-5 justify-start w-[90%] mx-auto lg:hidden">
+          <img src="../assets/images/user5.png" alt="user5" />
+          <div class="flex flex-col items-start justify-center">
+            <span class="font-extrabold text-xl">سلام، رویا</span>
+            <span class="date text-[#7D7D7F] text-lg"></span>
+          </div>
+        </div>
+        <!-- line -->
+        <div class="border-t-2 w-[90%] mx-auto mt-8 lg:hidden"></div>
+
+        <!-- tasks -->
+        <div
+          class="flex flex-col w-[90%] mx-auto mt-8 gap-2 lg:w-[50%] lg:mt-8 lg:relative lg:right-32"
         >
-            <div class="flex flex-col h-full">
-                <div class="flex flex-col flex-grow">
-                    <div
-                        class="flex gap-5 justify-start w-[90%] mx-auto p-3 mt-3 items-center"
-                    >
-                        <img
-                            src="../assets/images/user5.png"
-                            alt="user5"
-                            class="w-12 h-12 rounded-full"
-                        />
-                        <div
-                            class="flex flex-col items-start justify-center gap-2"
-                        >
-                            <span class="font-extrabold text-xl"
-                                >سلام، رویا</span
-                            >
-                            <span class="date text-[#7D7D7F] text-lg"></span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col gap-2 px-4 py-3">
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/home.svg"
-                                alt="home"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >خانه</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/task.svg"
-                                alt="task"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >تسک ها</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/calendar.svg"
-                                alt="calendar"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >تقویم</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/report.svg"
-                                alt="report"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >گزارشات</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/setting.svg"
-                                alt="setting"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >تنظیمات</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/support.svg"
-                                alt="support"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >پشتیبانی</span
-                            >
-                        </div>
-                        <div
-                            class="flex gap-5 hover:rounded-md p-3 hover:bg-[#F5FAFF]"
-                        >
-                            <img
-                                src="../assets/icons/profile.svg"
-                                alt="profile"
-                                class="w-[20px] h-[20px]"
-                            />
-                            <span
-                                class="font-semibold hover:text-[#007BFF] text-[#525252]"
-                                >پروفایل</span
-                            >
-                        </div>
-                    </div>
+          <!-- title -->
+          <span class="font-bold text-[#242424] text-xl"> تسک های امروز </span>
+          <span class="text-[#696969] font-normal" id="count-todo-task">
+            تسکی برای امروز نداری!
+          </span>
 
-                    <div class="pb-4">
-                        <div
-                            class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[90%] h-[10px] mx-auto justify-center items-center rounded-md"
-                        >
-                            <div
-                                class="flex bg-white gap-3 rounded-md justify-center px-6 py-2"
-                            >
-                                <img src="../assets/icons/sun.svg" alt="sun" />
-                                <span class="text-[#525252]">روشن</span>
-                            </div>
-                            <div
-                                class="flex bg-[#F7F7F7] gap-3 rounded-md justify-center px-6 py-2"
-                            >
-                                <img
-                                    src="../assets/icons/moon.svg"
-                                    alt="moon"
-                                />
-                                <span class="text-[#808080]">تاریک</span>
-                            </div>
-                        </div>
-                        <div class="border-t-2 w-[75%] mx-auto mt-8"></div>
-                        <div
-                            class="flex mt-2 w-[75%] mx-auto gap-4 py-4 cursor-pointer rounded-md justify-start"
-                        >
-                            <img
-                                src="../assets/icons/logout.svg"
-                                alt="logout"
-                                class="w-5 h-5"
-                            />
-                            <span class="text-[#525252] font-semibold"
-                                >خروج</span
-                            >
-                        </div>
-                    </div>
+          <!-- new task box -->
+          <div
+            id="addNewTask-box"
+            class="border-dashed border-[#cccccc] border-2 rounded-lg flex gap-3 items-center justify-start p-5 mt-3"
+          >
+            <button id="addNewTask-icon" class="open-task">
+              <img src="../assets/icons/add.svg" alt="add" />
+            </button>
+            <span class="text-[var(--color-primary-hover-light)] font-bold"
+              >افزودن وظیفه جدید</span
+            >
+          </div>
+
+          <!-- add New task form-->
+          <div
+            id="newTask-form"
+            class="hidden flex-col justify-between items-center gap-2 w-full m-auto border rounded-xl mt-5"
+          >
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 p-4"
+            >
+              <input
+                id="taskTitle-inp"
+                class="font-semibold text-lg text-[#7d7d7f] bg-gray-50 w-full focus:outline-none focus:ring-0"
+                placeholder="نام تسک"
+              />
+              <input
+                id="taskDesc-inp"
+                class="font-regular text-sm text-[#afaeb2] bg-gray-50 w-full focus:outline-none focus:ring-0"
+                placeholder="توضیحات"
+              />
+
+              <!-- selected tag -->
+              <div
+                class="py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1 hidden"
+                id="selected"
+              >
+                <img src="../assets/icons/close.svg" alt="close" />
+                <span class="tag-title">پایین</span>
+              </div>
+              <div
+                class="flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
+                id="hideTgs"
+              >
+                <button id="chooseTag-right-Btn" class="toggle-tag">
+                  <img src="../assets/icons/tag-right.svg" alt="tag-right" />
+                </button>
+                <button id="chooseTag-down-Btn" class="toggle-tag hidden">
+                  <img src="../assets/icons/tag-down.svg" alt="tag-down" />
+                </button>
+                <span
+                  class="font-semibold text-xs text-[--color-secondary-gray-lighter]"
+                  >تگ ها</span
+                >
+              </div>
+              <div
+                id="tagsBox"
+                class="hidden justify-between items-center gap-4 p-[10px] border rounded-lg"
+              >
+                <div
+                  class="tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
+                >
+                  پایین
                 </div>
+                <div class="w-px h-[20px] bg-gray-300"></div>
+                <div
+                  class="tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
+                >
+                  متوسط
+                </div>
+                <div class="w-px h-[20px] bg-gray-300"></div>
+                <div
+                  class="tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
+                >
+                  بالا
+                </div>
+              </div>
             </div>
-        </aside>
-
-        <!-- main mobilefirst and desktop -->
-        <main>
-            <section>
-                <div class="flex gap-5 justify-start w-[90%] mx-auto lg:hidden">
-                    <img src="../assets/images/user5.png" alt="user5" />
-                    <div class="flex flex-col items-start justify-center">
-                        <span class="font-extrabold text-xl">سلام، رویا</span>
-                        <span class="date text-[#7D7D7F] text-lg"></span>
-                    </div>
-                </div>
-                <!-- line -->
-                <div class="border-t-2 w-[90%] mx-auto mt-8 lg:hidden"></div>
-
-                <!-- tasks -->
-                <div
-                    class="flex flex-col w-[90%] mx-auto mt-8 gap-2 lg:w-[50%] lg:mt-8 lg:relative lg:right-32"
+            <hr class="text-black-50 w-full h-10px" />
+            <div class="w-full flex justify-end items-center">
+              <div class="flex justify-center items-center gap-1 p-4">
+                <button
+                  id="closeTask"
+                  class="close-task p-2 rounded-lg bg-[#F5F5F5]"
                 >
-                    <!-- title -->
-                    <span class="font-bold text-[#242424] text-xl">
-                        تسک های امروز
-                    </span>
-                    <span
-                        class="text-[#696969] font-normal"
-                        id="count-todo-task"
-                    >
-                        تسکی برای امروز نداری!
-                    </span>
-
-                    <!-- new task box -->
-                    <div
-                        id="addNewTask-box"
-                        class="border-dashed border-[#cccccc] border-2 rounded-lg flex gap-3 items-center justify-start p-5 mt-3"
-                    >
-                        <button id="addNewTask-icon" class="open-task">
-                            <img src="../assets/icons/add.svg" alt="add" />
-                        </button>
-                        <span
-                            class="text-[var(--color-primary-hover-light)] font-bold"
-                            >افزودن وظیفه جدید</span
-                        >
-                    </div>
-
-                    <!-- add New task -->
-                    <div
-                        id="newTask-form"
-                        class="hidden flex-col justify-between items-center gap-2 w-full m-auto border rounded-xl mt-5"
-                    >
-                        <div
-                            class="w-full flex flex-col justify-center items-start gap-4 p-4"
-                        >
-                            <input
-                                id="taskTitle-inp"
-                                class="font-semibold text-lg text-[#7d7d7f] bg-gray-50 w-full focus:outline-none focus:ring-0"
-                                placeholder="نام تسک"
-                            />
-                            <input
-                                id="taskDesc-inp"
-                                class="font-regular text-sm text-[#afaeb2] bg-gray-50 w-full focus:outline-none focus:ring-0"
-                                placeholder="توضیحات"
-                            />
-
-                            <!-- selected tag -->
-                            <div
-                                class="py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1 hidden"
-                                id="selected"
-                            >
-                                <img
-                                    src="../assets/icons/close.svg"
-                                    alt="close"
-                                />
-                            </div>
-                            <div
-                                class="flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
-                                id="hideTgs"
-                            >
-                                <button
-                                    id="chooseTag-right-Btn"
-                                    class="toggle-tag"
-                                >
-                                    <img
-                                        src="../assets/icons/tag-right.svg"
-                                        alt="tag-right"
-                                    />
-                                </button>
-                                <button
-                                    id="chooseTag-down-Btn"
-                                    class="toggle-tag hidden"
-                                >
-                                    <img
-                                        src="../assets/icons/tag-down.svg"
-                                        alt="tag-down"
-                                    />
-                                </button>
-                                <span
-                                    class="font-semibold text-xs text-[--color-secondary-gray-lighter]"
-                                    >تگ ها</span
-                                >
-                            </div>
-                            <div
-                                id="tagsBox"
-                                class="hidden justify-between items-center gap-4 p-[10px] border rounded-lg"
-                            >
-                                <div
-                                    class="tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
-                                >
-                                    پایین
-                                </div>
-                                <div class="w-px h-[20px] bg-gray-300"></div>
-                                <div
-                                    class="tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
-                                >
-                                    متوسط
-                                </div>
-                                <div class="w-px h-[20px] bg-gray-300"></div>
-                                <div
-                                    class="tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
-                                >
-                                    بالا
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="text-black-50 w-full h-10px" />
-                        <div class="w-full flex justify-end items-center">
-                            <div
-                                class="flex justify-center items-center gap-1 p-4"
-                            >
-                                <button
-                                    id="closeTask"
-                                    class="close-task p-2 rounded-lg bg-[#F5F5F5]"
-                                >
-                                    <img
-                                        src="../assets/icons/close.svg"
-                                        alt="close"
-                                    />
-                                </button>
-                                <button
-                                    id="addTask-btn"
-                                    class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
-                                >
-                                    اضافه کردن تسک
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    id="when-not-todo"
-                    class="flex flex-col w-[60%] mx-auto mt-8 lg:w-[30%] lg:relative lg:right-32"
+                  <img src="../assets/icons/close.svg" alt="close" />
+                </button>
+                <button
+                  id="addTask-btn"
+                  class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
                 >
-                    <img
-                        src="../assets/icons/main-picture.svg"
-                        alt="picture.svg"
-                    />
-                    <span
-                        class="text-[#7D7D7F] text-center mt-6 font-bold text-[16px]"
-                        >چه کارهایی امروز برای انجام داری؟</span
-                    >
-                    <span class="text-[#AFAEB2] text-center mt-2 text-[14px]"
-                        >میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع
-                        کنی!</span
-                    >
-                </div>
-            </section>
+                  اضافه کردن تسک
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <!-- section for adding new tasks that need to be done -->
-            <section class="flex w-full">
-                <div
-                    id="tasksContainer"
-                    class="mx-auto md:w-[50%] mt-10 flex-col lg:relative lg:right-32 w-[328px] hidden"
-                ></div>
+        <div
+          id="when-not-todo"
+          class="flex flex-col w-[60%] mx-auto mt-8 lg:w-[30%] lg:relative lg:right-32"
+        >
+          <img src="../assets/icons/main-picture.svg" alt="picture.svg" />
+          <span class="text-[#7D7D7F] text-center mt-6 font-bold text-[16px]"
+            >چه کارهایی امروز برای انجام داری؟</span
+          >
+          <span class="text-[#AFAEB2] text-center mt-2 text-[14px]"
+            >میتونی الان تسک‌هاتو اینجا بنویسی و برنامه ریزی رو شروع کنی!</span
+          >
+        </div>
+      </section>
 
-                <div
-                    id="taskTemplate"
-                    class="w-full my-4 border-[1px] rounded-[12px] justify-between items-center lg:py-4 py-[18px] hidden"
+      <!-- section for adding new tasks that need to be done -->
+      <section class="flex w-full">
+        <div
+          id="tasksContainer"
+          class="mx-auto md:w-[50%] mt-10 flex-col lg:relative lg:right-32 w-[328px] hidden"
+        ></div>
+
+        <div
+          id="taskTemplate"
+          class="taskCard w-full my-4 border-[1px] rounded-[12px] justify-between items-center lg:py-4 py-[18px] hidden"
+        >
+          <!-- color -->
+          <div
+            class="w-[4px] h-[50px] rounded-tl-[8px] rounded-bl-[8px] my-auto"
+            id="newTask-color"
+          ></div>
+
+          <div
+            class="flex justify-start text-center items-start gap-3 absolute pr-7 lg:pr-4"
+          >
+            <div class="w-[22px] h-[22px] flex justify-center items-center">
+              <input
+                type="checkbox"
+                class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
+              />
+            </div>
+
+            <!-- div for title & decription -->
+            <div class="flex flex-col gap-1">
+              <div
+                class="flex flex-col gap-1 md:flex-row md:items-center md:gap-3"
+              >
+                <h3
+                  class="text-right md:whitespace-nowrap font-bold text-lg text-[#242424]"
+                  id="newTask-title"
+                ></h3>
+                <span
+                  class="w-14 self-start md:self-auto rounded-[4px] font-bold text-xs py-[2px] px-[8px]"
+                  id="newTask-tag"
                 >
-                    <!-- color -->
-                    <div
-                        class="w-[4px] h-[50px] rounded-tl-[8px] rounded-bl-[8px] my-auto"
-                        id="newTask-color"
-                    ></div>
+                </span>
+              </div>
+              <h4
+                class="font-semibold text-sm text-right items-center md:whitespace-nowrap text-[#727272]"
+                id="newTask-desc"
+              ></h4>
+            </div>
+          </div>
+          <div class="relative">
+            <button class="operators-btn ml-4 self-start">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div
+              class="operators-box hidden absolute flex justify-between items-center gap-2 border rounded-md p-1 w-max left-[20px] top-[18px] bg-white z-50 shadow-md"
+            >
+              <button class="deleteTask-btn">
+                <img
+                  class="w-4 h-4"
+                  src="../assets/icons/trash.svg"
+                  alt="trash"
+                />
+              </button>
+              <div class="w-px h-4 bg-gray-300"></div>
+              <button class="editTask-btn">
+                <img
+                  class="w-4 h-4"
+                  src="../assets/icons/edit.svg"
+                  alt="edit"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
 
-                    <div
-                        class="flex justify-start text-center items-start gap-3 absolute pr-7 lg:pr-4"
-                    >
-                        <div
-                            class="w-[22px] h-[22px] flex justify-center items-center"
-                        >
-                            <input
-                                type="checkbox"
-                                class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
-                            />
-                        </div>
+        <!-- edit task template -->
+        <div
+            id="editTask-template"
+            class="hidden flex-col justify-between items-center gap-2 w-full m-auto border rounded-xl mt-5"
+          >
+            <div
+              class="w-full flex flex-col justify-center items-start gap-4 p-4"
+            >
+              <input
+                id="editTitle-inp"
+                class="font-semibold text-lg text-[#7d7d7f] bg-gray-50 w-full focus:outline-none focus:ring-0"
+                placeholder="نام تسک"
+              />
+              <input
+                id="editDesc-inp"
+                class="font-regular text-sm text-[#afaeb2] bg-gray-50 w-full focus:outline-none focus:ring-0"
+                placeholder="توضیحات"
+              />
 
-                        <!-- div for title & decription -->
-                        <div class="flex flex-col gap-1">
-                            <div
-                                class="flex flex-col gap-1 md:flex-row md:items-center md:gap-3"
-                            >
-                                <h3
-                                    class="text-right md:whitespace-nowrap font-bold text-lg text-[#242424]"
-                                    id="newTask-title"
-                                ></h3>
-                                <span
-                                    class="w-14 self-start md:self-auto rounded-[4px] font-bold text-xs py-[2px] px-[8px]"
-                                    id="newTask-tag"
-                                >
-                                </span>
-                            </div>
-                            <h4
-                                class="font-semibold text-sm text-right items-center md:whitespace-nowrap text-[#727272]"
-                                id="newTask-desc"
-                            ></h4>
-                        </div>
-                    </div>
-                    <button class="ml-4 self-start">
-                        <i class="fas fa-ellipsis-v"></i>
-                    </button>
-                </div>
-            </section>
-
-            <!-- Section for completed  -->
-            <section id="completedtasks" class="w-full h-screen flex">
-                <div
-                    class="mx-auto w-[328px] h-[297px] md:w-[50%] mt-10 flex flex-col lg:relative lg:right-32"
+              <!-- selected tag -->
+              <div
+                class="py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1 hidden"
+                id="edit-selectedTag"
+              >
+                <img src="../assets/icons/close.svg" alt="close" />
+                <span class="tag-title"></span>
+              </div>
+              <div
+                class="hidden flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
+                id="edit-hideTgs"
+              >
+                <button id="edit-chooseTag-right-Btn" class="toggle-tag">
+                  <img src="../assets/icons/tag-right.svg" alt="tag-right" />
+                </button>
+                <button id="edit-chooseTag-down-Btn" class="toggle-tag hidden">
+                  <img src="../assets/icons/tag-down.svg" alt="tag-down" />
+                </button>
+                <span
+                  class="font-semibold text-xs text-[--color-secondary-gray-lighter]"
+                  >تگ ها</span
                 >
-                    <div class="w-full h-[47px]">
-                        <h2 class="text-[16px] font-extrabold text-right mb-1">
-                            تسک‌های انجام شده
-                        </h2>
-                        <h3 id="taskDoneCount" class="text-[12px] font-extrabold text-right">
-                            
-                        </h3>
-                    </div>
-                    <div id="taskDone" class="w-full h-[66px] my-4 border-[1px] rounded-[12px] flex justify-between items-center hidden">
-                        <div
-                            id="colorOfTaskDone"
-                            class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#FFAF37] my-auto "
-                        ></div>
-                        <div
-                            class="flex justify-between text-center items-center gap-4 md:justify-start md:absolute md:pr-4"
-                        >
-                            <div
-                                class="w-[22px] h-[22px] flex justify-center items-center"
-                            >
-                                <input
-                                    type="checkbox"
-                                    class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
-                                    checked
-                                />
-                            </div>
-                            <p
-                                id="titleTaskDone"
-                                class="font-semibold text-sm line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
-                            ></p>
-                        </div>
-                        <div class="ml-4 my-auto flex">
-                            <i class="fas fa-ellipsis-v"></i>
-                        </div>
-                    </div>
-                    <!-- <div
+              </div>
+              <div
+                id="edit-tagsBox"
+                class="hidden justify-between items-center gap-4 p-[10px] border rounded-lg"
+              >
+                <div
+                  class="edit-tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
+                >
+                  پایین
+                </div>
+                <div class="w-px h-[20px] bg-gray-300"></div>
+                <div
+                  class="edit-tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
+                >
+                  متوسط
+                </div>
+                <div class="w-px h-[20px] bg-gray-300"></div>
+                <div
+                  class="edit-tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
+                >
+                  بالا
+                </div>
+              </div>
+            </div>
+            <hr class="text-black-50 w-full h-10px" />
+            <div class="w-full flex justify-end items-center">
+              <div class="flex justify-center items-center gap-1 p-4">
+                <button
+                  id="edit-addTask-btn"
+                  class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
+                >
+                ویرایش تسک
+                </button>
+              </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- Section for completed  -->
+      <section id="completedtasks" class="w-full h-screen flex">
+        <div
+          class="mx-auto w-[328px] h-[297px] md:w-[50%] mt-10 flex flex-col lg:relative lg:right-32"
+        >
+          <div class="w-full h-[47px]">
+            <h2 class="text-[16px] font-extrabold text-right mb-1">
+              تسک‌های انجام شده
+            </h2>
+            <h3
+              id="taskDoneCount"
+              class="text-[12px] font-extrabold text-right"
+            ></h3>
+          </div>
+          <div
+            id="taskDone"
+            class="w-full h-[66px] my-4 border-[1px] rounded-[12px] flex justify-between items-center hidden"
+          >
+            <div
+              id="colorOfTaskDone"
+              class="w-[4px] h-[42px] rounded-tl-[8px] rounded-bl-[8px] bg-[#FFAF37] my-auto"
+            ></div>
+            <div
+              class="flex justify-between text-center items-center gap-4 md:justify-start md:absolute md:pr-4"
+            >
+              <div class="w-[22px] h-[22px] flex justify-center items-center">
+                <input
+                  type="checkbox"
+                  class="w-[18.5px] h-[18.5px] rounded-sm focus:outline:none"
+                  checked
+                />
+              </div>
+              <p
+                id="titleTaskDone"
+                class="font-semibold text-sm line-through h-[44px] w-[210px] text-right items-center flex md:whitespace-nowrap"
+              ></p>
+            </div>
+            <div class="ml-4 my-auto flex">
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+          </div>
+          <!-- <div
                     id="completedTasksContainer"
                     class="w-full h-[66px] my-4 border-[1px] rounded-[12px] flex justify-between items-center"
                 >
@@ -610,7 +641,7 @@
                         <i class="fas fa-ellipsis-v"></i>
                     </div>
                 </div>  -->
-                    <!-- <div
+          <!-- <div
                         class="w-full h-[66px] mb-4 border-[1px] rounded-[12px] flex text-center justify-between items-center"
                     >
                         <div
@@ -638,7 +669,7 @@
                             <i class="fas fa-ellipsis-v"></i>
                         </div>
                     </div> -->
-                    <!-- <div
+          <!-- <div
                         class="w-full h-[66px] mb-4 border-[1px] rounded-[12px] flex text-center justify-between items-center"
                     >
                         <div
@@ -668,8 +699,8 @@
                         </div>
                     </div>
                 </div> -->
-                </div>
-            </section>
-        </main>
-    </body>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
