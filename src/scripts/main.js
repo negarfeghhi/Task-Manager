@@ -17,10 +17,8 @@ const tasksContainer = document.getElementById("todo-task");
 const countTodoTask = document.getElementById("count-todo-task");
 const hideTgs = document.getElementById("hideTgs");
 
-
 let taskArray = [];
 let mainTag = "";
-
 
 taskTags.forEach((tag) =>
   tag.addEventListener("click", (e) => {
@@ -29,49 +27,35 @@ taskTags.forEach((tag) =>
     tagsBox.classList.add("hidden");
 
     const selected = document.getElementById("selected");
-    generateSelectedTagBox(mainTag, selected)
-
+    generateSelectedTagBox(mainTag, selected);
   })
 );
 
 function generateSelectedTagBox(selectedTagText, containerElem) {
-
-  // containerElem.className =
-  //   "py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1";
+  containerElem.className =
+    "py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1";
   // containerElem.classList.remove("hidden")
   switch (selectedTagText) {
     case "پایین":
       // containerElem.innerHTML =
       //   '<img src="../assets/icons/close.svg" alt="close" /> پایین';
-      containerElem.querySelector('.tag-title').textContent = selectedTagText
+      containerElem.querySelector(".tag-title").textContent = selectedTagText;
       containerElem.classList.remove("hidden");
-      containerElem.classList.add(
-        "bg-[#C3FFF1]",
-        "text-[#11A483]",
-        "flex"
-      );
+      containerElem.classList.add("bg-[#C3FFF1]", "text-[#11A483]", "flex");
       break;
     case "متوسط":
       // containerElem.innerHTML =
       //   '<img src="../assets/icons/close.svg" alt="close" /> متوسط';
-      containerElem.querySelector('.tag-title').textContent = selectedTagText
+      containerElem.querySelector(".tag-title").textContent = selectedTagText;
       containerElem.classList.remove("hidden");
-      containerElem.classList.add(
-        "bg-[#FFEFD6]",
-        "text-[#FFAF37]",
-        "flex"
-      );
+      containerElem.classList.add("bg-[#FFEFD6]", "text-[#FFAF37]", "flex");
       break;
     case "بالا":
       // containerElem.innerHTML =
       //   '<img src="../assets/icons/close.svg" alt="close" /> بالا';
-      containerElem.querySelector('.tag-title').textContent = selectedTagText
+      containerElem.querySelector(".tag-title").textContent = selectedTagText;
       containerElem.classList.remove("hidden");
-      containerElem.classList.add(
-        "bg-[#FFE2DB]",
-        "text-[#FF5F37]",
-        "flex"
-      );
+      containerElem.classList.add("bg-[#FFE2DB]", "text-[#FF5F37]", "flex");
       break;
   }
 }
@@ -106,7 +90,6 @@ document.addEventListener("click", (e) => {
     newTaskForm.classList.add("hidden");
     addNewTaskBox.classList.remove("hidden");
     mainImageWhenNoTask.classList.remove("hidden");
-    
   }
 
   // Open and close tags box
@@ -119,10 +102,9 @@ document.addEventListener("click", (e) => {
 
   // Add new task
   if (e.target.closest("#addTask-btn")) {
+    const taskObj = generateTask();
 
-    const taskObj = generateTask()
-
-    showToDoTasks(taskObj)
+    showToDoTasks(taskObj);
 
     selected.classList.add("hidden");
     hideTgs.classList.remove("hidden");
@@ -131,12 +113,10 @@ document.addEventListener("click", (e) => {
     chooseTagRightBtn.classList.toggle("hidden");
     countTodoTask.innerHTML = `${taskArray.length} تسک را باید انجام دهید.`;
   }
-
 });
 
 // create a new task
 function generateTask() {
-
   const taskTitle = document.getElementById("taskTitle-inp");
   const taskDesc = document.getElementById("taskDesc-inp");
 
@@ -157,13 +137,11 @@ function generateTask() {
   taskDesc.value = "";
   mainTag = "";
 
-  return newTaskObj
+  return newTaskObj;
 }
-
 
 // Add todo tasks to container
 function showToDoTasks(task) {
-
   const template = document.getElementById("taskTemplate");
   const container = document.getElementById("tasksContainer");
 
@@ -214,50 +192,49 @@ function showToDoTasks(task) {
   }
 
   // click on operators button for each todo task
-  const operatorsBtn = newTodo.querySelector('.operators-btn')
-  const operatorsBox = newTodo.querySelector(".operators-box")
-  operatorsBtn.addEventListener('click', () => {
-    operatorsBox.classList.toggle("hidden")
-  })
-  // click on Delete 
-  const deleteTaskbtn = newTodo.querySelector(".deleteTask-btn")
-  deleteTaskbtn.addEventListener('click', () => {
-    operatorsBox.classList.add("hidden")
-    newTodo.remove()
-  })
+  const operatorsBtn = newTodo.querySelector(".operators-btn");
+  const operatorsBox = newTodo.querySelector(".operators-box");
+  operatorsBtn.addEventListener("click", () => {
+    operatorsBox.classList.toggle("hidden");
+  });
+  // click on Delete
+  const deleteTaskbtn = newTodo.querySelector(".deleteTask-btn");
+  deleteTaskbtn.addEventListener("click", () => {
+    operatorsBox.classList.add("hidden");
+    newTodo.remove();
+  });
 
   // Click on Edit
-  const editTaskbtn = newTodo.querySelector(".editTask-btn")
-  const editTemplate = document.getElementById('editTask-template')
+  const editTaskbtn = newTodo.querySelector(".editTask-btn");
+  const editTemplate = document.getElementById("editTask-template");
   const newEditTemplate = editTemplate.cloneNode(true);
-  newEditTemplate.removeAttribute("id")
-  newEditTemplate.dataset.id = task.id
+  newEditTemplate.removeAttribute("id");
+  newEditTemplate.dataset.id = task.id;
 
-  editTaskbtn.addEventListener('click', () => {
+  editTaskbtn.addEventListener("click", () => {
     newEditTemplate.classList.add("flex");
     newEditTemplate.classList.remove("hidden");
-    operatorsBox.classList.add("hidden")
-    newEditTemplate.querySelector('#editTitle-inp').value = title.textContent
-    newEditTemplate.querySelector('#editDesc-inp').value = desc.textContent
-    const tagelement = newEditTemplate.querySelector('#edit-selectedTag')
+    operatorsBox.classList.add("hidden");
+    newEditTemplate.querySelector("#editTitle-inp").value = title.textContent;
+    newEditTemplate.querySelector("#editDesc-inp").value = desc.textContent;
+    const tagelement = newEditTemplate.querySelector("#edit-selectedTag");
 
-    generateSelectedTagBox(tag.textContent, tagelement)
+    generateSelectedTagBox(tag.textContent, tagelement);
 
-    newTodo.insertAdjacentElement("afterend", newEditTemplate)
-
-  })
+    newTodo.insertAdjacentElement("afterend", newEditTemplate);
+  });
 
   // Click on editTask Btn
-  const formEditBtn = newEditTemplate.querySelector('#edit-addTask-btn')
-  formEditBtn.addEventListener('click', () => {
+  const formEditBtn = newEditTemplate.querySelector("#edit-addTask-btn");
+  formEditBtn.addEventListener("click", () => {
+    newTodo.querySelector("#newTask-title").textContent =
+      newEditTemplate.querySelector("#editTitle-inp").value;
+    newTodo.querySelector("#newTask-desc").textContent =
+      newEditTemplate.querySelector("#editDesc-inp").value;
+    newTodo.querySelector("#newTask-tag").textContent = task.mainTag;
 
-    newTodo.querySelector("#newTask-title").textContent = newEditTemplate.querySelector('#editTitle-inp').value
-    newTodo.querySelector("#newTask-desc").textContent = newEditTemplate.querySelector('#editDesc-inp').value
-    newTodo.querySelector("#newTask-tag").textContent = task.mainTag
-
-    newEditTemplate.remove()
-
-  })
+    newEditTemplate.remove();
+  });
 
   ///////////////////////////////////////////////////////
   title.textContent = task.title;
@@ -294,7 +271,6 @@ function showToDoTasks(task) {
   }
 }
 
-
 //
 function moveCompletedTasks() {
   const template = document.getElementById("taskDone");
@@ -314,8 +290,7 @@ function moveCompletedTasks() {
     return;
   }
   const countTaskDone = document.getElementById("taskDoneCount");
-  countTaskDone.innerText = `${doneTasks.length} انجام شده است`
-
+  countTaskDone.innerText = `${doneTasks.length} انجام شده است`;
 
   // 3) برای هر تسک done یک کارت جدید بساز
   doneTasks.forEach((task) => {
@@ -333,11 +308,7 @@ function moveCompletedTasks() {
     // رنگ بر اساس mainTag
     const colorEl = card.querySelector("#colorOfTaskDone");
     if (colorEl) {
-      colorEl.classList.remove(
-        "bg-[#FFAF37]",
-        "bg-[#11A483]",
-        "bg-[#FF5F37]"
-      );
+      colorEl.classList.remove("bg-[#FFAF37]", "bg-[#11A483]", "bg-[#FF5F37]");
 
       switch (task.mainTag) {
         case "بالا":
@@ -391,10 +362,7 @@ function moveCompletedTasks() {
 
               // فریم بعدی: برگردون به حالت عادی تا ترنزیشن اجرا بشه
               setTimeout(() => {
-                mainCard.classList.remove(
-                  "opacity-0",
-                  "-translate-y-2"
-                );
+                mainCard.classList.remove("opacity-0", "-translate-y-2");
               }, 10);
             }
           }
@@ -406,9 +374,7 @@ function moveCompletedTasks() {
 
     // وقتی done است، مطمئن شو کارت بالا مخفی است
     if (todoContainer) {
-      const mainCard = todoContainer.querySelector(
-        `[data-id="${task.id}"]`
-      );
+      const mainCard = todoContainer.querySelector(`[data-id="${task.id}"]`);
       if (mainCard) {
         mainCard.classList.add("hidden");
       }
@@ -421,7 +387,6 @@ function moveCompletedTasks() {
   template.classList.add("hidden");
 }
 //
-
 
 // Get Date
 const formatter = new Intl.DateTimeFormat("fa-IR", {
