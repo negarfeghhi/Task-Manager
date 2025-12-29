@@ -31,6 +31,16 @@ taskTags.forEach((tag) =>
   })
 );
 
+function updateTodoCounter() {
+  const todoCount = taskArray.filter((task) => !task.isDone).length;
+
+  if (todoCount > 0) {
+    countTodoTask.innerHTML = `${todoCount} تسک را باید انجام دهید.`;
+  } else {
+    countTodoTask.innerHTML = "تسکی برای امروز نداری!";
+  }
+}
+
 function generateSelectedTagBox(selectedTagText, containerElem) {
   containerElem.className =
     "py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1";
@@ -111,7 +121,8 @@ document.addEventListener("click", (e) => {
     tagsBox.classList.add("hidden");
     chooseTagDowntBtn.classList.toggle("hidden");
     chooseTagRightBtn.classList.toggle("hidden");
-    countTodoTask.innerHTML = `${taskArray.length} تسک را باید انجام دهید.`;
+    // countTodoTask.innerHTML = `${taskArray.length} تسک را باید انجام دهید.`;
+    updateTodoCounter();
   }
 });
 
@@ -181,6 +192,7 @@ function showToDoTasks(task) {
           task.isDone = true;
           newTodo.classList.add("hidden");
           moveCompletedTasks();
+          updateTodoCounter();
         }, 300);
       } else {
         task.isDone = false;
@@ -290,7 +302,7 @@ function moveCompletedTasks() {
     return;
   }
   const countTaskDone = document.getElementById("taskDoneCount");
-  countTaskDone.innerText = `${doneTasks.length} انجام شده است`;
+  countTaskDone.innerText = `${doneTasks.length}  تسک انجام شده است .`;
 
   // 3) برای هر تسک done یک کارت جدید بساز
   doneTasks.forEach((task) => {
