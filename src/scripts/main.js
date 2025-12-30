@@ -31,13 +31,24 @@ taskTags.forEach((tag) =>
   })
 );
 
-function updateTodoCounter() {
-  const todoCount = taskArray.filter((task) => !task.isDone).length;
+function updateTaskCounter(isDone) {
+  const tasks = taskArray.filter((task) => task.isDone === isDone);
+  const count = tasks.length;
 
-  if (todoCount > 0) {
-    countTodoTask.innerHTML = `${todoCount} تسک را باید انجام دهید.`;
+  if (isDone) {
+    const countTaskDone = document.getElementById("taskDoneCount");
+
+    if (count === 0) {
+      countTaskDone.innerText = "";
+    } else {
+      countTaskDone.innerText = `${count} تسک انجام شده است.`;
+    }
   } else {
-    countTodoTask.innerHTML = "تسکی برای امروز نداری!";
+    if (count > 0) {
+      countTodoTask.innerHTML = `${count} تسک را باید انجام دهید.`;
+    } else {
+      countTodoTask.innerHTML = "تسکی برای امروز نداری!";
+    }
   }
 }
 
@@ -122,7 +133,8 @@ document.addEventListener("click", (e) => {
     chooseTagDowntBtn.classList.toggle("hidden");
     chooseTagRightBtn.classList.toggle("hidden");
     // countTodoTask.innerHTML = `${taskArray.length} تسک را باید انجام دهید.`;
-    updateTodoCounter();
+    updateTaskCounter(false);
+    updateTaskCounter(true);
   }
 });
 
@@ -179,7 +191,6 @@ function showToDoTasks(task) {
     checkbox.checked = !!task.isDone;
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
-        // مرحله 1 : انیمیشن خروج
         newTodo.classList.add(
           "transition-all",
           "duration-300",
@@ -192,7 +203,8 @@ function showToDoTasks(task) {
           task.isDone = true;
           newTodo.classList.add("hidden");
           moveCompletedTasks();
-          updateTodoCounter();
+          updateTaskCounter(false);
+          updateTaskCounter(true);
         }, 300);
       } else {
         task.isDone = false;
@@ -283,45 +295,37 @@ function showToDoTasks(task) {
   }
 }
 
-//
 function moveCompletedTasks() {
-  const template = document.getElementById("taskDone");
-  if (!template) return;
-
-  const doneContainer = template.parentElement;
-  const todoContainer = document.getElementById("tasksContainer");
-
-  // 1) پاک کردن کارت‌های done قبلی
-  const oldCards = doneContainer.querySelectorAll(".done-card");
-  oldCards.forEach((card) => card.remove());
-
-  // 2) فقط تسک‌هایی که isDone = true هستند
+  const container = document.getElementById("completedTasksContainer");
+  const template = document.getElementById("taskDoneTemplate");
   const doneTasks = taskArray.filter((task) => task.isDone);
+  const todoContainer = document.getElementById("tasksContainer");
+  if (!container || !template) return;
+  container.innerHTML = "";
+
   if (doneTasks.length === 0) {
-    template.classList.add("hidden");
+    updateTaskCounter(false);
+    updateTaskCounter(true);
     return;
   }
-  const countTaskDone = document.getElementById("taskDoneCount");
-  countTaskDone.innerText = `${doneTasks.length}  تسک انجام شده است .`;
 
-  // 3) برای هر تسک done یک کارت جدید بساز
+  //Create a new card for each task completed.
   doneTasks.forEach((task) => {
-    const card = template.cloneNode(true); // کپی کامل کارت
+    const card = template.cloneNode(true);
     card.classList.remove("hidden");
     card.removeAttribute("id");
     card.classList.add("done-card");
 
-    // عنوان
+    // title
     const titleEl = card.querySelector("#titleTaskDone");
     if (titleEl) {
       titleEl.textContent = task.title;
     }
 
-    // رنگ بر اساس mainTag
+    //Color based on mainTag
     const colorEl = card.querySelector("#colorOfTaskDone");
     if (colorEl) {
       colorEl.classList.remove("bg-[#FFAF37]", "bg-[#11A483]", "bg-[#FF5F37]");
-
       switch (task.mainTag) {
         case "بالا":
           colorEl.classList.add("bg-[#FF5F37]");
@@ -335,12 +339,11 @@ function moveCompletedTasks() {
       }
     }
 
-    // چک‌باکس داخل کارت انجام‌شده
+    // Checkbox inside the card is done.
     const checkbox = card.querySelector('input[type="checkbox"]');
     if (checkbox) {
       checkbox.checked = true;
 
-      // ⭐ وقتی از پایین تیک رو برداری، انیمیشنی برگرده بالا
       checkbox.addEventListener("change", () => {
         task.isDone = checkbox.checked;
 
@@ -357,13 +360,9 @@ function moveCompletedTasks() {
             }
 
             if (task.isDone) {
-              // وقتی دوباره done شد → بالا قایم بمونه
               mainCard.classList.add("hidden");
             } else {
-              // ✅ وقتی از پایین تیک برداشته شد → با انیمیشن برگرده بالا
               mainCard.classList.remove("hidden");
-
-              // شروع حالت انیمیشن (نامرئی و کمی بالا)
               mainCard.classList.add(
                 "transition-all",
                 "duration-300",
@@ -372,7 +371,6 @@ function moveCompletedTasks() {
                 "-translate-y-2"
               );
 
-              // فریم بعدی: برگردون به حالت عادی تا ترنزیشن اجرا بشه
               setTimeout(() => {
                 mainCard.classList.remove("opacity-0", "-translate-y-2");
               }, 10);
@@ -384,7 +382,7 @@ function moveCompletedTasks() {
       });
     }
 
-    // وقتی done است، مطمئن شو کارت بالا مخفی است
+    //When done, make sure the top card is hidden.
     if (todoContainer) {
       const mainCard = todoContainer.querySelector(`[data-id="${task.id}"]`);
       if (mainCard) {
@@ -392,11 +390,10 @@ function moveCompletedTasks() {
       }
     }
 
-    doneContainer.appendChild(card);
+    container.appendChild(card);
   });
-
-  // تمپلیت اصلی hidden بماند
-  template.classList.add("hidden");
+  updateTaskCounter(false);
+  updateTaskCounter(true);
 }
 //
 
