@@ -1,5 +1,6 @@
 import { applyTagStyle } from "./utils/tagStyles.js"
 import { getTime } from "./utils/dateFormatter.js";
+import { applyDoneTaskColor } from "./utils/doneTaskStyle.js";
 
 // Getting the elements
 const menuBtn = document.getElementById("menu-btn");
@@ -34,6 +35,7 @@ taskTags.forEach((tag) =>
   })
 );
 
+// update count of done and undone tasks
 function updateTaskCounter(isDone) {
 
   const count = (taskArray.filter((task) => task.isDone === isDone)).length;
@@ -49,6 +51,7 @@ function updateTaskCounter(isDone) {
   }
 }
 
+//generate a box of selected tag after choosing
 function generateSelectedTagBox(selectedTagText, containerElem) {
   containerElem.classList.remove("hidden");
   containerElem.querySelector(".tag-title").textContent = selectedTagText;
@@ -133,7 +136,6 @@ document.addEventListener("click", (e) => {
     tagsBox.classList.add("hidden");
     chooseTagDowntBtn.classList.toggle("hidden");
     chooseTagRightBtn.classList.toggle("hidden");
-    // countTodoTask.innerHTML = `${taskArray.length} تسک را باید انجام دهید.`;
     updateTaskCounter(false);
     updateTaskCounter(true);
   }
@@ -294,22 +296,11 @@ function moveCompletedTasks() {
       titleEl.textContent = task.title;
     }
 
-    //Color based on mainTag
+    //set Color based on mainTag to container of done task
+
     const colorEl = card.querySelector("#colorOfTaskDone");
-    if (colorEl) {
-      colorEl.classList.remove("bg-[#FFAF37]", "bg-[#11A483]", "bg-[#FF5F37]");
-      switch (task.mainTag) {
-        case "بالا":
-          colorEl.classList.add("bg-[#FF5F37]");
-          break;
-        case "متوسط":
-          colorEl.classList.add("bg-[#FFAF37]");
-          break;
-        case "پایین":
-          colorEl.classList.add("bg-[#11A483]");
-          break;
-      }
-    }
+    applyDoneTaskColor(colorEl,task.mainTag)
+
 
     // Checkbox inside the card is done.
     const checkbox = card.querySelector('input[type="checkbox"]');
