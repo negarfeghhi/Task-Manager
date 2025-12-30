@@ -1,23 +1,393 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>کوئرا لیست | تماس با من</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="../../tailwind.config.js"></script>
-    <link rel="stylesheet" href="../../styles/main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="../style.css" />
   </head>
-  <!-- Remove the codes inside body -->
   <body class="container mx-auto">
-    <h1 class="text-3xl my-5">صفحه تماس با من</h1>
-    <div class="flex gap-5">
-      <a class="text-blue-800 underline" href="/index.html">
-        بازگشت به صفحه اصلی
-      </a>
-      <a class="text-blue-800 underline" href="./about.html">
-        برو صفحه درباره من
-      </a>
-    </div>
+    <header
+      class="bg-[var(--white)] px-5 py-4 relative flex items-center justify-center lg:justify-between gap-16"
+    >
+      <img
+        src="../assets/icons/menu.svg"
+        alt="menu"
+        class="absolute right-4 w-6 h-6 lg:hidden"
+      />
+      <h3 class="text-xl font-semibold lg:hidden">کوئرا لیست</h3>
+      <nav
+        class="hidden lg:flex gap-16 text-sm lg:justify-center lg:items-center"
+      >
+        <h3 class="text-xl font-semibold lg:pr-12">کوئرا لیست</h3>
+
+        <a
+          href="../../index.html"
+          class="text-[#666666] hover:text-[var(--primary)]"
+          >صفحه اصلی</a
+        >
+        <a href="about.html" class="text-[#666666] hover:text-[var(--primary)]"
+          >درباره ما</a
+        >
+        <a href="#" class="text-[#666666] hover:text-[var(--primary)]"
+          >ارتباط با ما</a
+        >
+      </nav>
+
+      <div
+        class="hidden lg:flex lg: justify-center lg:items-center lg:gap-6 lg:pl-12"
+      >
+        <button
+          class="bg-[var(--primary)] text-[var(--white)] px-6 py-2 rounded-lg"
+        >
+          ورود به اپلیکیشن
+        </button>
+        <button
+          class="w-10 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-100"
+        >
+          <img src="../assets/icons/toggle-theme.svg" alt="toggle-theme" />
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section
+        class="bg-gradient-to-b from-[#F5F6F8] to-white lg:flex lg:bg-none lg:my-auto lg:p-6"
+      >
+        <div
+          class="lg:flex lg:justify-between lg:w-[70%] mx-auto lg:bg-[#ffffff] lg:p-5 lg:mt-6 lg:border-gray-50 lg:border-1 lg:rounded-xl"
+        >
+          <div class="flex flex-col">
+            <div
+              class="flex justify-center flex-col items-center p-8 lg:justify-start lg:items-start"
+            >
+              <h1 class="text-[#141414] font-bold text-3xl">تماس با من</h1>
+              <p
+                class="text-[#141414] text-center font-normal lg:text-right lg:text-[#6F7076]"
+              >
+                چیزی هست که بخوای ازم بپرسی؟ خوشحال میشم بتونم بهت کمکی کنم.
+              </p>
+            </div>
+
+            <div class="hidden lg:flex-col lg:flex lg:gap-10 lg:p-8">
+              <span class="flex gap-3">
+                <img src="../assets/icons/call-2.svg" alt="call" />
+                09121234567</span
+              >
+              <span class="flex gap-3">
+                <img src="../assets/icons/sms.svg" alt="sms" />
+                QueraList@gmail.com</span
+              >
+              <span class="flex gap-5 mt-28">
+                <img
+                  src="../assets/icons/github.svg"
+                  alt="github"
+                  class="w-8 h-8"
+                />
+                <img
+                  src="../assets/icons/twitter.svg"
+                  alt="twitter"
+                  class="w-8 h-8"
+                />
+                <img
+                  src="../assets/icons/linkedin.svg"
+                  alt="link"
+                  class="w-8 h-8"
+                />
+              </span>
+            </div>
+          </div>
+          <div class="hidden lg:block lg:border-1 border-gray-200 h-auto"></div>
+
+          <div
+            class="bg-white m-4 p-4 rounded-xl shadow-[0px_4px_63px_0px_#00000008] border border-gray-300 lg:border-none lg:bg-transparent"
+          >
+            <form class="space-y-4 text-right">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm text-gray-600 mb-1 block">نام:</label>
+                  <input
+                    type="text"
+                    placeholder="نام شما"
+                    class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label class="text-sm text-gray-600 mb-1 block"
+                    >نام خانوادگی:</label
+                  >
+                  <input
+                    type="text"
+                    placeholder="نام خانوادگی شما"
+                    class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="text-sm text-gray-600 mb-1 block">ایمیل:</label>
+                <input
+                  type="email"
+                  placeholder="ایمیل"
+                  class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label class="text-sm text-gray-600 mb-1 block"
+                  >شماره تماس:</label
+                >
+                <input
+                  type="tel"
+                  placeholder="شماره تماس شما"
+                  style="direction: rtl; text-align: right"
+                  class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label class="text-sm text-gray-600 mb-1 block"
+                  >متن پیام شما:</label
+                >
+                <textarea
+                  rows="4"
+                  placeholder="پیام خود را بنویسید..."
+                  class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg text-sm font-medium transition"
+              >
+                ارسال پیام
+              </button>
+            </form>
+          </div>
+
+          <div class="flex flex-col gap-3 items-center p-4 lg:hidden">
+            <div class="flex gap-3">
+              <div
+                class="border border-gray-300 bg-white rounded-xl flex justify-center py-3 px-4"
+              >
+                <div class="flex justify-center p-2">
+                  <div
+                    class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+                  >
+                    <img
+                      src="../assets/icons/email.svg"
+                      alt="email"
+                      class="w-6 h-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="flex flex-col items-start justify-center">
+                  <span class="text-[#242424] font-bold">ایمیل</span>
+                  <span class="text-[#242424]">QueraList@gmail.com</span>
+                </div>
+              </div>
+              <div
+                class="border border-gray-300 bg-white rounded-xl flex justify-center py-3 px-4"
+              >
+                <div class="flex justify-center p-2">
+                  <div
+                    class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+                  >
+                    <img
+                      src="../assets/icons/call.svg"
+                      alt="call"
+                      class="w-6 h-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="flex flex-col items-start justify-center">
+                  <span class="text-[#242424] font-bold">تلفن</span>
+                  <span class="text-[#242424]">09121234567</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="border border-gray-300 bg-white w-full rounded-lg flex justify-center"
+            >
+              <div class="flex justify-center p-2">
+                <div
+                  class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+                >
+                  <img
+                    src="../assets/icons/github.svg"
+                    alt="github"
+                    class="w-6 h-6"
+                  />
+                </div>
+              </div>
+              <div class="flex justify-center p-3">
+                <div
+                  class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+                >
+                  <img
+                    src="../assets/icons/twitter.svg"
+                    alt="twitter"
+                    class="w-6 h-6"
+                  />
+                </div>
+              </div>
+              <div class="flex justify-center p-3">
+                <div
+                  class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+                >
+                  <img
+                    src="../assets/icons/linkedin.svg"
+                    alt="linkedin"
+                    class="w-6 h-6"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <section>
+        <div class="flex items-center gap-4 max-w-3xl mx-auto px-4 my-16">
+          <span class="flex-1 h-1 bg-gray-300"></span>
+          <h2 class="text-xl font-bold whitespace-nowrap">کوئرا لیست</h2>
+          <span class="flex-1 h-1 bg-gray-300"></span>
+        </div>
+      </section>
+
+      <section class="lg:flex lg:flex-row lg:justify-around">
+        <div class="flex flex-col order-1">
+          <div class="flex flex-col gap-3 p-4">
+            <span class="text-[#242424] font-bold text-xl"
+              >با ما در ارتباط باش</span
+            >
+            <span class="text-[#242424] lg:max-w-sm"
+              >اگه میخوای اولین نفری باشی که از فیچرهای جدید و تخفیفات با خبر
+              بشی.</span
+            >
+          </div>
+
+          <form class="max-w-xl mx-auto w-full px-4">
+            <div
+              class="flex items-center gap-2 border border-gray-300 rounded-2xl p-2 bg-white"
+            >
+              <input
+                type="email"
+                placeholder="ایمیل"
+                class="flex-1 text-right outline-none text-sm placeholder-gray-400"
+              />
+              <button
+                type="submit"
+                class="bg-[var(--primary)] text-white px-6 py-2 rounded-xl text-sm font-medium"
+              >
+                ارسال
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="lg:flex flex-col gap-5 w-full max-w-[30%] p-5 hidden">
+          <div class="flex gap-4 items-center">
+            <img src="../assets/icons/fax.svg" alt="fax" />
+            <span>فکس: ۴۴۴۴۵۵۶۶ - ۰۲۱</span>
+          </div>
+
+          <div class="flex gap-4 items-center">
+            <img src="../assets/icons/call.svg" alt="call" />
+            <span>تلفن پشتیبانی: ۴۴۴۴۵۵۶۶ - ۰۲۱</span>
+          </div>
+
+          <div class="flex gap-4 items-center">
+            <img src="../assets/icons/map.svg" alt="map" />
+            <span
+              >آدرس دفتر مرکزی: پونک - خیابان اشرفی اصفهانی - خیابان صبحدل- بن
+              بست شب بو</span
+            >
+          </div>
+        </div>
+
+        <div class="mt-8 flex justify-center gap-6 lg:hidden">
+          <div
+            class="w-[230px] bg-white rounded-3xl border border-gray-200 px-4 py-6 text-center shadow-sm"
+          >
+            <div class="flex justify-center mb-4">
+              <div
+                class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+              >
+                <img
+                  src="../assets/icons/map-mobile.svg"
+                  alt="map-mobile"
+                  class="w-6 h-6"
+                />
+              </div>
+            </div>
+            <span class="text-sm p-5"
+              >آدرس دفتر مرکزی: پونک - خیابان اشرفی اصفهانی - خیابان صبحدل- بن
+              بست شب بو</span
+            >
+          </div>
+
+          <div>
+            <div>
+              <div
+                class="w-full max-w-[220px] bg-white rounded-3xl border border-gray-200 px-4 py-4 text-center shadow-sm flex justify-evenly mb-4"
+              >
+                <div class="flex items-center mb-3">
+                  <div
+                    class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+                  >
+                    <img
+                      src="../assets/icons/call-mobile.svg"
+                      alt="call-mobile"
+                      class="w-6 h-6"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm">تلفن پشتیبانی</p>
+                  <p class="text-sm">021-44445566</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div
+                class="w-full max-w-[220px] bg-white rounded-3xl border border-gray-200 px-4 py-4 text-center shadow-sm flex justify-evenly"
+              >
+                <div class="flex items-center mb-3">
+                  <div
+                    class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center"
+                  >
+                    <img
+                      src="../assets/icons/fax-mobile.svg"
+                      alt="fax-mobil"
+                      class="w-6 h-6"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm">فکس</p>
+                  <p class="text-sm">021-44445566</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="flex justify-center mx-auto max-w-md mt-10 mb-3 lg:max-w-xl"
+      >
+        <span class="text-center text-[#666666]"
+          >تمامی حقوق مادی و معنوی این سایت متعلق به کوئرا لیست می‌باشد.</span
+        >
+      </section>
+    </footer>
   </body>
 </html>
