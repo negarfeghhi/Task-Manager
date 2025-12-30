@@ -139,6 +139,16 @@ document.addEventListener("click", (e) => {
     updateTaskCounter(false);
     updateTaskCounter(true);
   }
+
+  // dark mode
+  if (e.target.closest(".darkBtn")) {
+    document.documentElement.classList.add("dark");
+  }
+
+  // light mode
+  if (e.target.closest(".lightBtn")) {
+    document.documentElement.classList.remove("dark");
+  }
 });
 
 // create a new task
@@ -299,7 +309,7 @@ function moveCompletedTasks() {
     //set Color based on mainTag to container of done task
 
     const colorEl = card.querySelector("#colorOfTaskDone");
-    applyDoneTaskColor(colorEl,task.mainTag)
+    applyDoneTaskColor(colorEl, task.mainTag)
 
 
     // Checkbox inside the card is done.
