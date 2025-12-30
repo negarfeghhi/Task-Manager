@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -14,7 +14,7 @@
     />
   </head>
 
-  <body class="bg-gray-50 min-h-screen">
+  <body class="bg-gray-50 min-h-screen dark:bg-[#000000] dark:text-[#FFFFFF]">
     <!-- header -->
 
     <header class="p-5 lg:hidden">
@@ -141,7 +141,7 @@
         class="bg-[#F7F7F7] flex gap-6 py-6 px-5 w-[75%] h-[10px] mx-auto justify-center items-center rounded-md"
       >
         <div class="flex bg-white gap-3 rounded-md justify-center px-8 py-2">
-          <img src="../assets/icons/sun.svg" alt="sun" />
+          <img src="../assets/icons/sun.svg" alt="sun"/>
           <span class="text-[#525252]">روشن</span>
         </div>
         <div
@@ -454,11 +454,11 @@
                   class="text-right md:whitespace-nowrap font-bold text-lg text-[#242424]"
                   id="newTask-title"
                 ></h3>
-                <span
-                  class="w-14 self-start md:self-auto rounded-[4px] font-bold text-xs py-[2px] px-[8px]"
-                  id="newTask-tag"
+                <div
+                  class="newTask-tag w-12 self-start md:self-auto rounded-[4px] font-bold text-xs py-[2px] px-[6px]"
                 >
-                </span>
+                  <span class="tag-title mx-auto"></span>
+                </div>
               </div>
               <h4
                 class="font-semibold text-sm text-right items-center md:whitespace-nowrap text-[#727272]"
@@ -494,80 +494,80 @@
 
         <!-- edit task template -->
         <div
-            id="editTask-template"
-            class="hidden flex-col justify-between items-center gap-2 w-full m-auto border rounded-xl mt-5"
+          id="editTask-template"
+          class="hidden flex-col justify-between items-center gap-2 w-full m-auto border rounded-xl mt-5"
+        >
+          <div
+            class="w-full flex flex-col justify-center items-start gap-4 p-4"
           >
-            <div
-              class="w-full flex flex-col justify-center items-start gap-4 p-4"
-            >
-              <input
-                id="editTitle-inp"
-                class="font-semibold text-lg text-[#7d7d7f] bg-gray-50 w-full focus:outline-none focus:ring-0"
-                placeholder="نام تسک"
-              />
-              <input
-                id="editDesc-inp"
-                class="font-regular text-sm text-[#afaeb2] bg-gray-50 w-full focus:outline-none focus:ring-0"
-                placeholder="توضیحات"
-              />
+            <input
+              id="editTitle-inp"
+              class="font-semibold text-lg text-[#7d7d7f] bg-gray-50 w-full focus:outline-none focus:ring-0"
+              placeholder="نام تسک"
+            />
+            <input
+              id="editDesc-inp"
+              class="font-regular text-sm text-[#afaeb2] bg-gray-50 w-full focus:outline-none focus:ring-0"
+              placeholder="توضیحات"
+            />
 
-              <!-- selected tag -->
-              <div
-                class="py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1 hidden"
-                id="edit-selectedTag"
+            <!-- selected tag -->
+            <div
+              class="py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1 hidden"
+              id="edit-selectedTag"
+            >
+              <img src="../assets/icons/close.svg" alt="close" />
+              <span class="tag-title"></span>
+            </div>
+            <div
+              class="hidden flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
+              id="edit-hideTgs"
+            >
+              <button id="edit-chooseTag-right-Btn" class="toggle-tag">
+                <img src="../assets/icons/tag-right.svg" alt="tag-right" />
+              </button>
+              <button id="edit-chooseTag-down-Btn" class="toggle-tag hidden">
+                <img src="../assets/icons/tag-down.svg" alt="tag-down" />
+              </button>
+              <span
+                class="font-semibold text-xs text-[--color-secondary-gray-lighter]"
+                >تگ ها</span
               >
-                <img src="../assets/icons/close.svg" alt="close" />
-                <span class="tag-title"></span>
+            </div>
+            <div
+              id="edit-tagsBox"
+              class="hidden justify-between items-center gap-4 p-[10px] border rounded-lg"
+            >
+              <div
+                class="edit-tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
+              >
+                پایین
               </div>
+              <div class="w-px h-[20px] bg-gray-300"></div>
               <div
-                class="hidden flex justify-between items-center gap-2 border rounded-[4px] px-2 py-1"
-                id="edit-hideTgs"
+                class="edit-tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
               >
-                <button id="edit-chooseTag-right-Btn" class="toggle-tag">
-                  <img src="../assets/icons/tag-right.svg" alt="tag-right" />
-                </button>
-                <button id="edit-chooseTag-down-Btn" class="toggle-tag hidden">
-                  <img src="../assets/icons/tag-down.svg" alt="tag-down" />
-                </button>
-                <span
-                  class="font-semibold text-xs text-[--color-secondary-gray-lighter]"
-                  >تگ ها</span
-                >
+                متوسط
               </div>
+              <div class="w-px h-[20px] bg-gray-300"></div>
               <div
-                id="edit-tagsBox"
-                class="hidden justify-between items-center gap-4 p-[10px] border rounded-lg"
+                class="edit-tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
               >
-                <div
-                  class="edit-tag bg-[#C3FFF1] text-[#11A483] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
-                >
-                  پایین
-                </div>
-                <div class="w-px h-[20px] bg-gray-300"></div>
-                <div
-                  class="edit-tag bg-[#FFEFD6] text-[#FFAF37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
-                >
-                  متوسط
-                </div>
-                <div class="w-px h-[20px] bg-gray-300"></div>
-                <div
-                  class="edit-tag bg-[#FFE2DB] text-[#FF5F37] py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer"
-                >
-                  بالا
-                </div>
+                بالا
               </div>
             </div>
-            <hr class="text-black-50 w-full h-10px" />
-            <div class="w-full flex justify-end items-center">
-              <div class="flex justify-center items-center gap-1 p-4">
-                <button
-                  id="edit-addTask-btn"
-                  class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
-                >
+          </div>
+          <hr class="text-black-50 w-full h-10px" />
+          <div class="w-full flex justify-end items-center">
+            <div class="flex justify-center items-center gap-1 p-4">
+              <button
+                id="edit-addTask-btn"
+                class="py-[6px] px-[16px] rounded-lg bg-[#007BFF] opacity-[60%] text-white"
+              >
                 ویرایش تسک
-                </button>
-              </div>
+              </button>
             </div>
+          </div>
         </div>
       </section>
 
@@ -703,5 +703,10 @@
         </div>
       </section>
     </main>
+    <script>
+      document.getElementById("darkBtn").onclick = function () {
+        document.documentElement.classList.toggle("dark");
+      };
+    </script>
   </body>
 </html>
