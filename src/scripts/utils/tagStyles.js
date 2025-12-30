@@ -1,3 +1,4 @@
+//set color of selected tag
 const tagStyles = {
     پایین: {
         tagBg: "bg-[#C3FFF1]",
