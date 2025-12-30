@@ -1,3 +1,7 @@
+import { applyTagStyle } from "./utils/tagStyles.js"
+import { getTime } from "./utils/dateFormatter.js";
+import { applyDoneTaskColor } from "./utils/doneTaskStyle.js";
+
 // Getting the elements
 const menuBtn = document.getElementById("menu-btn");
 const sidebar = document.getElementById("sidebar");
@@ -31,59 +35,29 @@ taskTags.forEach((tag) =>
   })
 );
 
+// update count of done and undone tasks
 function updateTaskCounter(isDone) {
-  const tasks = taskArray.filter((task) => task.isDone === isDone);
-  const count = tasks.length;
+
+  const count = (taskArray.filter((task) => task.isDone === isDone)).length;
 
   if (isDone) {
     const countTaskDone = document.getElementById("taskDoneCount");
-
-    if (count === 0) {
-      countTaskDone.innerText = "";
-    } else {
-      countTaskDone.innerText = `${count} تسک انجام شده است.`;
-    }
-  } else {
-    if (count > 0) {
-      countTodoTask.innerHTML = `${count} تسک را باید انجام دهید.`;
-    } else {
-      countTodoTask.innerHTML = "تسکی برای امروز نداری!";
-    }
+    if (count === 0) countTaskDone.innerText = "";
+    else countTaskDone.innerText = `${count} تسک انجام شده است.`;
+  }
+  else {
+    if (count > 0) countTodoTask.innerHTML = `${count} تسک را باید انجام دهید.`;
+    else countTodoTask.innerHTML = "تسکی برای امروز نداری!";
   }
 }
 
+//generate a box of selected tag after choosing
 function generateSelectedTagBox(selectedTagText, containerElem) {
   containerElem.classList.remove("hidden");
   containerElem.querySelector(".tag-title").textContent = selectedTagText;
   applyTagStyle(selectedTagText, containerElem);
 }
 
-function applyTagStyle(tagName, tag, color) {
-  if (!tagName) return;
-  tag.classList.remove("bg-[#C3FFF1]","bg-[#FFEFD6]","bg-[#FFE2DB]","text-[#11A483]","text-[#FFAF37]","text-[#FF5F37]","flex");
-  color?.classList.remove("bg-[#11A483]", "bg-[#FFAF37]", "bg-[#FF5F37]");
-  tag.classList.add("rounded-[4px]", "font-bold","text-xs", "py-[2px]", "px-[8px]", "flex", "items-center", "gap-1" );
-  const title = tag.querySelector(".tag-title");
-  if (title) {
-    title.textContent = tagName;
-  }
-  switch (tagName) {
-    case "پایین":
-      tag.classList.add("bg-[#C3FFF1]", "text-[#11A483]");
-      color?.classList.add("bg-[#11A483]");
-      break;
-
-    case "متوسط":
-      tag.classList.add("bg-[#FFEFD6]", "text-[#FFAF37]");
-      color?.classList.add("bg-[#FFAF37]");
-      break;
-
-    case "بالا":
-      tag.classList.add("bg-[#FFE2DB]", "text-[#FF5F37]");
-      color?.classList.add("bg-[#FF5F37]");
-      break;
-  }
-}
 
 function prioritizingTags(priority, container, newTodo) {
   switch (priority) {
@@ -162,7 +136,6 @@ document.addEventListener("click", (e) => {
     tagsBox.classList.add("hidden");
     chooseTagDowntBtn.classList.toggle("hidden");
     chooseTagRightBtn.classList.toggle("hidden");
-    // countTodoTask.innerHTML = `${taskArray.length} تسک را باید انجام دهید.`;
     updateTaskCounter(false);
     updateTaskCounter(true);
   }
@@ -323,22 +296,11 @@ function moveCompletedTasks() {
       titleEl.textContent = task.title;
     }
 
-    //Color based on mainTag
+    //set Color based on mainTag to container of done task
+
     const colorEl = card.querySelector("#colorOfTaskDone");
-    if (colorEl) {
-      colorEl.classList.remove("bg-[#FFAF37]", "bg-[#11A483]", "bg-[#FF5F37]");
-      switch (task.mainTag) {
-        case "بالا":
-          colorEl.classList.add("bg-[#FF5F37]");
-          break;
-        case "متوسط":
-          colorEl.classList.add("bg-[#FFAF37]");
-          break;
-        case "پایین":
-          colorEl.classList.add("bg-[#11A483]");
-          break;
-      }
-    }
+    applyDoneTaskColor(colorEl,task.mainTag)
+
 
     // Checkbox inside the card is done.
     const checkbox = card.querySelector('input[type="checkbox"]');
@@ -396,26 +358,8 @@ function moveCompletedTasks() {
   updateTaskCounter(false);
   updateTaskCounter(true);
 }
-//
 
-// Get Date
-const formatter = new Intl.DateTimeFormat("fa-IR", {
-  weekday: "long",
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  calendar: "persian",
-});
 
-const parts = formatter.formatToParts(new Date());
+//get time for sideBar
 
-const map = {};
-parts.forEach((p) => {
-  map[p.type] = p.value;
-});
-
-const formattedDate = `${map.weekday}، ${map.day} ${map.month} ${map.year}`;
-
-document.querySelectorAll(".date").forEach((el) => {
-  el.textContent = formattedDate;
-});
+getTime()
