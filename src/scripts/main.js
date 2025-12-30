@@ -53,30 +53,60 @@ function updateTaskCounter(isDone) {
 }
 
 function generateSelectedTagBox(selectedTagText, containerElem) {
-  containerElem.className =
-    "py-[2px] px-[8px] rounded-[4px] font-bold text-xs cursor-pointer justify-center items-center gap-1";
-  // containerElem.classList.remove("hidden")
-  switch (selectedTagText) {
+  containerElem.classList.remove("hidden");
+  containerElem.querySelector(".tag-title").textContent = selectedTagText;
+  applyTagStyle(selectedTagText, containerElem);
+}
+
+function applyTagStyle(tagName, tag, color) {
+  if (!tagName) return;
+  tag.classList.remove("bg-[#C3FFF1]","bg-[#FFEFD6]","bg-[#FFE2DB]","text-[#11A483]","text-[#FFAF37]","text-[#FF5F37]","flex");
+  color?.classList.remove("bg-[#11A483]", "bg-[#FFAF37]", "bg-[#FF5F37]");
+  tag.classList.add("rounded-[4px]", "font-bold","text-xs", "py-[2px]", "px-[8px]", "flex", "items-center", "gap-1" );
+  const title = tag.querySelector(".tag-title");
+  if (title) {
+    title.textContent = tagName;
+  }
+  switch (tagName) {
     case "پایین":
-      // containerElem.innerHTML =
-      //   '<img src="../assets/icons/close.svg" alt="close" /> پایین';
-      containerElem.querySelector(".tag-title").textContent = selectedTagText;
-      containerElem.classList.remove("hidden");
-      containerElem.classList.add("bg-[#C3FFF1]", "text-[#11A483]", "flex");
+      tag.classList.add("bg-[#C3FFF1]", "text-[#11A483]");
+      color?.classList.add("bg-[#11A483]");
       break;
+
     case "متوسط":
-      // containerElem.innerHTML =
-      //   '<img src="../assets/icons/close.svg" alt="close" /> متوسط';
-      containerElem.querySelector(".tag-title").textContent = selectedTagText;
-      containerElem.classList.remove("hidden");
-      containerElem.classList.add("bg-[#FFEFD6]", "text-[#FFAF37]", "flex");
+      tag.classList.add("bg-[#FFEFD6]", "text-[#FFAF37]");
+      color?.classList.add("bg-[#FFAF37]");
       break;
+
     case "بالا":
-      // containerElem.innerHTML =
-      //   '<img src="../assets/icons/close.svg" alt="close" /> بالا';
-      containerElem.querySelector(".tag-title").textContent = selectedTagText;
-      containerElem.classList.remove("hidden");
-      containerElem.classList.add("bg-[#FFE2DB]", "text-[#FF5F37]", "flex");
+      tag.classList.add("bg-[#FFE2DB]", "text-[#FF5F37]");
+      color?.classList.add("bg-[#FF5F37]");
+      break;
+  }
+}
+
+function prioritizingTags(priority, container, newTodo) {
+  switch (priority) {
+    case "پایین":
+      container.insertAdjacentElement("beforeend", newTodo);
+      break;
+    case "متوسط": {
+      const firstLow = Array.from(container.children).find((current) => {
+        const findElement = current.querySelector(".newTask-tag");
+        const title = findElement?.querySelector(".tag-title");
+        return title && title.textContent === "پایین";
+      });
+
+      if (firstLow) {
+        firstLow.insertAdjacentElement("beforebegin", newTodo);
+      } else {
+        container.appendChild(newTodo);
+      }
+      break;
+    }
+
+    case "بالا":
+      container.insertAdjacentElement("afterbegin", newTodo);
       break;
   }
 }
@@ -155,7 +185,6 @@ function generateTask() {
   };
 
   taskArray.push(newTaskObj);
-
   taskTitle.value = "";
   taskDesc.value = "";
   mainTag = "";
@@ -178,7 +207,7 @@ function showToDoTasks(task) {
 
   const title = newTodo.querySelector("#newTask-title");
   const desc = newTodo.querySelector("#newTask-desc");
-  const tag = newTodo.querySelector("#newTask-tag");
+  const tag = newTodo.querySelector(".newTask-tag");
   const color = newTodo.querySelector("#newTask-color");
 
   // connect this DOM card with the task object
@@ -243,7 +272,9 @@ function showToDoTasks(task) {
     newEditTemplate.querySelector("#editDesc-inp").value = desc.textContent;
     const tagelement = newEditTemplate.querySelector("#edit-selectedTag");
 
-    generateSelectedTagBox(tag.textContent, tagelement);
+    // generateSelectedTagBox(tag.textContent, tagelement);
+    const tagTitle = tag.querySelector(".tag-title")?.textContent;
+    generateSelectedTagBox(tagTitle, tagelement);
 
     newTodo.insertAdjacentElement("afterend", newEditTemplate);
   });
@@ -259,40 +290,10 @@ function showToDoTasks(task) {
 
     newEditTemplate.remove();
   });
-
-  ///////////////////////////////////////////////////////
   title.textContent = task.title;
   desc.textContent = task.desc;
-  tag.textContent = task.mainTag;
-
-  color.className = "w-[4px] h-[50px] rounded-tl-[8px] rounded-bl-[8px]";
-  tag.className = "rounded-[4px] font-bold text-xs py-[2px] px-[8px]";
-
-  switch (task.mainTag) {
-    case "پایین":
-      color.classList.add("bg-[#11A483]");
-      tag.classList.add("bg-[#C3FFF1]", "text-[#11A483]");
-      container.insertAdjacentElement("beforeend", newTodo);
-      break;
-    case "متوسط":
-      color.classList.add("bg-[#FFAF37]");
-      tag.classList.add("bg-[#FFEFD6]", "text-[#FFAF37]");
-      const firstLow = Array.from(container.children).find((current) => {
-        const findElement = current.querySelector("#newTask-tag");
-        return findElement && findElement.textContent === "پایین";
-      });
-      if (firstLow) {
-        firstLow.insertAdjacentElement("beforebegin", newTodo);
-      } else {
-        container.appendChild(newTodo);
-      }
-      break;
-    case "بالا":
-      color.classList.add("bg-[#FF5F37]");
-      tag.classList.add("bg-[#FFE2DB]", "text-[#FF5F37]");
-      container.insertAdjacentElement("afterbegin", newTodo);
-      break;
-  }
+  applyTagStyle(task.mainTag, tag, color);
+  prioritizingTags(task.mainTag, container, newTodo);
 }
 
 function moveCompletedTasks() {
