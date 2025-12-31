@@ -171,6 +171,14 @@ export function showToDoTasks(task) {
         newTodo.querySelector("#newTask-desc").textContent =
             newEditTemplate.querySelector("#editDesc-inp").value;
         newTodo.querySelector("#newTask-tag").textContent = task.mainTag;
+       const editedObj = taskArray.find(tsk => tsk.id === task.id)
+       if(editedObj){
+        editedObj.title = newEditTemplate.querySelector("#editTitle-inp").value;
+        editedObj.desc = newEditTemplate.querySelector("#editDesc-inp").value;
+        editedObj.tagTitle = task.mainTag
+       }
+        saveTasksToLocal(taskArray)
+        saveTasksToLocal(taskArray)
         newEditTemplate.remove();
     });
     title.textContent = task.title;
