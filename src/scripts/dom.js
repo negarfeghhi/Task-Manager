@@ -58,14 +58,4 @@ document.addEventListener("click", (e) => {
     chooseTagRightBtn.classList.toggle("hidden");
     chooseTagDowntBtn.classList.toggle("hidden");
   }
-
-  // dark mode
-  if (e.target.closest(".darkBtn")) {
-    document.documentElement.classList.add("dark");
-  }
-
-  // light mode
-  if (e.target.closest(".lightBtn")) {
-    document.documentElement.classList.remove("dark");
-  }
 });

@@ -1,17 +1,30 @@
-import { applyTagStyle } from "./utils/tagStyles.js"
+import { applyTagStyle } from "./utils/tagStyles.js";
 import { applyDoneTaskColor } from "./utils/doneTaskStyle.js";
-import { prioritizingTags } from "./utils/prioritizeTask.js"
-
+import { prioritizingTags } from "./utils/prioritizeTask.js";
+import { saveTasksToLocal, loadTasksFromLocal } from "./utils/localStorage.js";
 
 const taskTags = document.querySelectorAll(".tag");
 const hideTgs = document.getElementById("hideTgs");
 const tagsBox = document.getElementById("tagsBox");
 const countTodoTask = document.getElementById("count-todo-task");
+const mainImageWhenNoTask = document.getElementById("when-not-todo");
 
-
-
-let taskArray = [];
+let taskArray = loadTasksFromLocal();
 let mainTag = "";
+
+if (taskArray.length) {
+    if (mainImageWhenNoTask) {
+        mainImageWhenNoTask.classList.add("hidden");
+    }
+
+    taskArray.forEach((task) => {
+        showToDoTasks(task);
+    });
+
+    moveCompletedTasks();
+    updateTaskCounter(false);
+    updateTaskCounter(true);
+}
 
 taskTags.forEach((tag) =>
     tag.addEventListener("click", (e) => {
@@ -41,6 +54,10 @@ export function generateTask() {
     };
 
     taskArray.push(newTaskObj);
+    saveTasksToLocal(taskArray);
+        if (mainImageWhenNoTask) {
+        mainImageWhenNoTask.classList.add("hidden");
+    }
     taskTitle.value = "";
     taskDesc.value = "";
     mainTag = "";
@@ -90,12 +107,16 @@ export function showToDoTasks(task) {
                     moveCompletedTasks();
                     updateTaskCounter(false);
                     updateTaskCounter(true);
+                    saveTasksToLocal(taskArray);
                 }, 300);
             } else {
                 task.isDone = false;
                 newTodo.classList.remove("hidden");
                 newTodo.classList.remove("opacity-0", "translate-y-4");
                 moveCompletedTasks();
+                updateTaskCounter(false);
+                updateTaskCounter(true);
+                saveTasksToLocal(taskArray);
             }
         });
     }
@@ -111,6 +132,12 @@ export function showToDoTasks(task) {
     deleteTaskbtn.addEventListener("click", () => {
         operatorsBox.classList.add("hidden");
         newTodo.remove();
+
+        taskArray = taskArray.filter((t) => t.id !== task.id);
+        updateTaskCounter(false);
+        updateTaskCounter(true);
+        saveTasksToLocal(taskArray);
+        
     });
 
     // Click on Edit
@@ -124,7 +151,8 @@ export function showToDoTasks(task) {
         newEditTemplate.classList.add("flex");
         newEditTemplate.classList.remove("hidden");
         operatorsBox.classList.add("hidden");
-        newEditTemplate.querySelector("#editTitle-inp").value = title.textContent;
+        newEditTemplate.querySelector("#editTitle-inp").value =
+            title.textContent;
         newEditTemplate.querySelector("#editDesc-inp").value = desc.textContent;
         const tagelement = newEditTemplate.querySelector("#edit-selectedTag");
 
@@ -138,9 +166,19 @@ export function showToDoTasks(task) {
     // Click on editTask Btn
     const formEditBtn = newEditTemplate.querySelector("#edit-addTask-btn");
     formEditBtn.addEventListener("click", () => {
-        newTodo.querySelector("#newTask-title").textContent = newEditTemplate.querySelector("#editTitle-inp").value;
-        newTodo.querySelector("#newTask-desc").textContent = newEditTemplate.querySelector("#editDesc-inp").value;
+        newTodo.querySelector("#newTask-title").textContent =
+            newEditTemplate.querySelector("#editTitle-inp").value;
+        newTodo.querySelector("#newTask-desc").textContent =
+            newEditTemplate.querySelector("#editDesc-inp").value;
         newTodo.querySelector("#newTask-tag").textContent = task.mainTag;
+       const editedObj = taskArray.find(tsk => tsk.id === task.id)
+       if(editedObj){
+        editedObj.title = newEditTemplate.querySelector("#editTitle-inp").value;
+        editedObj.desc = newEditTemplate.querySelector("#editDesc-inp").value;
+        editedObj.tagTitle = task.mainTag
+       }
+        saveTasksToLocal(taskArray)
+        saveTasksToLocal(taskArray)
         newEditTemplate.remove();
     });
     title.textContent = task.title;
@@ -151,16 +189,15 @@ export function showToDoTasks(task) {
 
 // update count of done and undone tasks
 export function updateTaskCounter(isDone) {
-
-    const count = (taskArray.filter((task) => task.isDone === isDone)).length;
+    const count = taskArray.filter((task) => task.isDone === isDone).length;
 
     if (isDone) {
         const countTaskDone = document.getElementById("taskDoneCount");
         if (count === 0) countTaskDone.innerText = "";
         else countTaskDone.innerText = `${count} تسک انجام شده است.`;
-    }
-    else {
-        if (count > 0) countTodoTask.innerHTML = `${count} تسک را باید انجام دهید.`;
+    } else {
+        if (count > 0)
+            countTodoTask.innerHTML = `${count} تسک را باید انجام دهید.`;
         else countTodoTask.innerHTML = "تسکی برای امروز نداری!";
     }
 }
@@ -203,8 +240,7 @@ export function moveCompletedTasks() {
         //set Color based on mainTag to container of done task
 
         const colorEl = card.querySelector("#colorOfTaskDone");
-        applyDoneTaskColor(colorEl, task.mainTag)
-
+        applyDoneTaskColor(colorEl, task.mainTag);
 
         // Checkbox inside the card is done.
         const checkbox = card.querySelector('input[type="checkbox"]');
@@ -239,19 +275,27 @@ export function moveCompletedTasks() {
                             );
 
                             setTimeout(() => {
-                                mainCard.classList.remove("opacity-0", "-translate-y-2");
+                                mainCard.classList.remove(
+                                    "opacity-0",
+                                    "-translate-y-2"
+                                );
                             }, 10);
                         }
                     }
                 }
 
                 moveCompletedTasks();
+                updateTaskCounter(false);
+                updateTaskCounter(true);
+                saveTasksToLocal(taskArray);
             });
         }
 
         //When done, make sure the top card is hidden.
         if (todoContainer) {
-            const mainCard = todoContainer.querySelector(`[data-id="${task.id}"]`);
+            const mainCard = todoContainer.querySelector(
+                `[data-id="${task.id}"]`
+            );
             if (mainCard) {
                 mainCard.classList.add("hidden");
             }
