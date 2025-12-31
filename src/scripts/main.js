@@ -9,7 +9,7 @@ const chooseTagDowntBtn = document.getElementById("chooseTag-down-Btn");
 const tagsBox = document.getElementById("tagsBox");
 const addTaskBtn = document.getElementById("addTask-btn");
 const hideTgs = document.getElementById("hideTgs");
-
+const selected = document.getElementById("selected");
 
 
   addTaskBtn.addEventListener('click',()=>{
