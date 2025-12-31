@@ -1,6 +1,7 @@
-import { applyTagStyle } from "./utils/tagStyles.js"
+import { applyTagStyle } from "./utils/tagStyles.js";
 import { getTime } from "./utils/dateFormatter.js";
 import { applyDoneTaskColor } from "./utils/doneTaskStyle.js";
+import { saveTasksToLocal, loadTasksFromLocal } from "./utils/localStorage.js";
 
 // Getting the elements
 const menuBtn = document.getElementById("menu-btn");
@@ -21,355 +22,388 @@ const tasksContainer = document.getElementById("todo-task");
 const countTodoTask = document.getElementById("count-todo-task");
 const hideTgs = document.getElementById("hideTgs");
 
-let taskArray = [];
+let taskArray = loadTasksFromLocal();
+if (taskArray.length) {
+    mainImageWhenNoTask.classList.add("hidden");
+    taskArray.forEach((task) => {
+        showToDoTasks(task);
+    });
+
+    moveCompletedTasks();
+    updateTaskCounter(false); //update doing tasks
+    updateTaskCounter(true); //update done tasks
+}
+
 let mainTag = "";
 
 taskTags.forEach((tag) =>
-  tag.addEventListener("click", (e) => {
-    mainTag = e.target.textContent.trim("");
-    hideTgs.classList.add("hidden");
-    tagsBox.classList.add("hidden");
+    tag.addEventListener("click", (e) => {
+        mainTag = e.target.textContent.trim("");
+        hideTgs.classList.add("hidden");
+        tagsBox.classList.add("hidden");
 
-    const selected = document.getElementById("selected");
-    generateSelectedTagBox(mainTag, selected);
-  })
+        const selected = document.getElementById("selected");
+        generateSelectedTagBox(mainTag, selected);
+    })
 );
 
 // update count of done and undone tasks
 function updateTaskCounter(isDone) {
+    const count = taskArray.filter((task) => task.isDone === isDone).length;
 
-  const count = (taskArray.filter((task) => task.isDone === isDone)).length;
-
-  if (isDone) {
-    const countTaskDone = document.getElementById("taskDoneCount");
-    if (count === 0) countTaskDone.innerText = "";
-    else countTaskDone.innerText = `${count} تسک انجام شده است.`;
-  }
-  else {
-    if (count > 0) countTodoTask.innerHTML = `${count} تسک را باید انجام دهید.`;
-    else countTodoTask.innerHTML = "تسکی برای امروز نداری!";
-  }
+    if (isDone) {
+        const countTaskDone = document.getElementById("taskDoneCount");
+        if (count === 0) countTaskDone.innerText = "";
+        else countTaskDone.innerText = `${count} تسک انجام شده است.`;
+    } else {
+        if (count > 0)
+            countTodoTask.innerHTML = `${count} تسک را باید انجام دهید.`;
+        else countTodoTask.innerHTML = "تسکی برای امروز نداری!";
+    }
 }
 
 //generate a box of selected tag after choosing
 function generateSelectedTagBox(selectedTagText, containerElem) {
-  containerElem.classList.remove("hidden");
-  containerElem.querySelector(".tag-title").textContent = selectedTagText;
-  applyTagStyle(selectedTagText, containerElem);
+    containerElem.classList.remove("hidden");
+    containerElem.querySelector(".tag-title").textContent = selectedTagText;
+    applyTagStyle(selectedTagText, containerElem);
 }
 
-
 function prioritizingTags(priority, container, newTodo) {
-  switch (priority) {
-    case "پایین":
-      container.insertAdjacentElement("beforeend", newTodo);
-      break;
-    case "متوسط": {
-      const firstLow = Array.from(container.children).find((current) => {
-        const findElement = current.querySelector(".newTask-tag");
-        const title = findElement?.querySelector(".tag-title");
-        return title && title.textContent === "پایین";
-      });
+    switch (priority) {
+        case "پایین":
+            container.insertAdjacentElement("beforeend", newTodo);
+            break;
+        case "متوسط": {
+            const firstLow = Array.from(container.children).find((current) => {
+                const findElement = current.querySelector(".newTask-tag");
+                const title = findElement?.querySelector(".tag-title");
+                return title && title.textContent === "پایین";
+            });
 
-      if (firstLow) {
-        firstLow.insertAdjacentElement("beforebegin", newTodo);
-      } else {
-        container.appendChild(newTodo);
-      }
-      break;
+            if (firstLow) {
+                firstLow.insertAdjacentElement("beforebegin", newTodo);
+            } else {
+                container.appendChild(newTodo);
+            }
+            break;
+        }
+
+        case "بالا":
+            container.insertAdjacentElement("afterbegin", newTodo);
+            break;
     }
-
-    case "بالا":
-      container.insertAdjacentElement("afterbegin", newTodo);
-      break;
-  }
 }
 
 // Click on elements
 
 // Open sideBar
 document.addEventListener("click", (e) => {
-  if (e.target.closest(".open-sidebar")) {
-    sidebar.classList.remove("translate-x-full");
-    sidebar.classList.add("translate-x-0");
-    overlay.classList.remove("hidden");
-  }
+    if (e.target.closest(".open-sidebar")) {
+        sidebar.classList.remove("translate-x-full");
+        sidebar.classList.add("translate-x-0");
+        overlay.classList.remove("hidden");
+    }
 
-  // Close sideBar
-  if (e.target.closest(".close-sidebar") || e.target === overlay) {
-    sidebar.classList.remove("translate-x-0");
-    sidebar.classList.add("translate-x-full");
-    overlay.classList.add("hidden");
-  }
+    // Close sideBar
+    if (e.target.closest(".close-sidebar") || e.target === overlay) {
+        sidebar.classList.remove("translate-x-0");
+        sidebar.classList.add("translate-x-full");
+        overlay.classList.add("hidden");
+    }
 
-  // Open new task form
-  if (e.target.closest(".open-task")) {
-    addNewTaskBox.classList.add("hidden");
-    mainImageWhenNoTask.classList.add("hidden");
-    newTaskForm.classList.remove("hidden");
-    newTaskForm.classList.add("flex");
-  }
+    // Open new task form
+    if (e.target.closest(".open-task")) {
+        addNewTaskBox.classList.add("hidden");
+        mainImageWhenNoTask.classList.add("hidden");
+        newTaskForm.classList.remove("hidden");
+        newTaskForm.classList.add("flex");
+    }
 
-  // Close new task form
-  if (e.target.closest(".close-task")) {
-    newTaskForm.classList.add("hidden");
-    addNewTaskBox.classList.remove("hidden");
-    mainImageWhenNoTask.classList.remove("hidden");
-  }
+    // Close new task form
+    if (e.target.closest(".close-task")) {
+        newTaskForm.classList.add("hidden");
+        addNewTaskBox.classList.remove("hidden");
+        mainImageWhenNoTask.classList.remove("hidden");
+    }
 
-  // Open and close tags box
-  if (e.target.closest(".toggle-tag")) {
-    tagsBox.classList.add("flex");
-    tagsBox.classList.toggle("hidden");
-    chooseTagRightBtn.classList.toggle("hidden");
-    chooseTagDowntBtn.classList.toggle("hidden");
-  }
+    // Open and close tags box
+    if (e.target.closest(".toggle-tag")) {
+        tagsBox.classList.add("flex");
+        tagsBox.classList.toggle("hidden");
+        chooseTagRightBtn.classList.toggle("hidden");
+        chooseTagDowntBtn.classList.toggle("hidden");
+    }
 
-  // Add new task
-  if (e.target.closest("#addTask-btn")) {
-    const taskObj = generateTask();
+    // Add new task
+    if (e.target.closest("#addTask-btn")) {
+        const taskObj = generateTask();
 
-    showToDoTasks(taskObj);
+        showToDoTasks(taskObj);
 
-    selected.classList.add("hidden");
-    hideTgs.classList.remove("hidden");
-    tagsBox.classList.add("hidden");
-    chooseTagDowntBtn.classList.toggle("hidden");
-    chooseTagRightBtn.classList.toggle("hidden");
-    updateTaskCounter(false);
-    updateTaskCounter(true);
-  }
+        selected.classList.add("hidden");
+        hideTgs.classList.remove("hidden");
+        tagsBox.classList.add("hidden");
+        chooseTagDowntBtn.classList.toggle("hidden");
+        chooseTagRightBtn.classList.toggle("hidden");
+        updateTaskCounter(false);
+        updateTaskCounter(true);
+    }
 
-  // dark mode
-  if (e.target.closest(".darkBtn")) {
-    document.documentElement.classList.add("dark");
-  }
+    // dark mode
+    if (e.target.closest(".darkBtn")) {
+        document.documentElement.classList.add("dark");
+    }
 
-  // light mode
-  if (e.target.closest(".lightBtn")) {
-    document.documentElement.classList.remove("dark");
-  }
+    // light mode
+    if (e.target.closest(".lightBtn")) {
+        document.documentElement.classList.remove("dark");
+    }
 });
 
 // create a new task
 function generateTask() {
-  const taskTitle = document.getElementById("taskTitle-inp");
-  const taskDesc = document.getElementById("taskDesc-inp");
+    const taskTitle = document.getElementById("taskTitle-inp");
+    const taskDesc = document.getElementById("taskDesc-inp");
 
-  let title = taskTitle.value;
-  let desc = taskDesc.value;
+    let title = taskTitle.value;
+    let desc = taskDesc.value;
 
-  let newTaskObj = {
-    id: Date.now(),
-    title,
-    desc,
-    mainTag,
-    isDone: false,
-  };
+    let newTaskObj = {
+        id: Date.now(),
+        title,
+        desc,
+        mainTag,
+        isDone: false,
+    };
 
-  taskArray.push(newTaskObj);
-  taskTitle.value = "";
-  taskDesc.value = "";
-  mainTag = "";
+    taskArray.push(newTaskObj);
+    //
+    saveTasksToLocal(taskArray);
+    //
+    taskTitle.value = "";
+    taskDesc.value = "";
+    mainTag = "";
 
-  return newTaskObj;
+    return newTaskObj;
 }
 
 // Add todo tasks to container
 function showToDoTasks(task) {
-  const template = document.getElementById("taskTemplate");
-  const container = document.getElementById("tasksContainer");
+    const template = document.getElementById("taskTemplate");
+    const container = document.getElementById("tasksContainer");
 
-  container.classList.remove("hidden");
+    container.classList.remove("hidden");
 
-  //get new todo task template
-  const newTodo = template.cloneNode(true);
-  newTodo.classList.add("flex");
-  newTodo.classList.remove("hidden");
-  newTodo.removeAttribute("id");
+    //get new todo task template
+    const newTodo = template.cloneNode(true);
+    newTodo.classList.add("flex");
+    newTodo.classList.remove("hidden");
+    newTodo.removeAttribute("id");
 
-  const title = newTodo.querySelector("#newTask-title");
-  const desc = newTodo.querySelector("#newTask-desc");
-  const tag = newTodo.querySelector(".newTask-tag");
-  const color = newTodo.querySelector("#newTask-color");
+    const title = newTodo.querySelector("#newTask-title");
+    const desc = newTodo.querySelector("#newTask-desc");
+    const tag = newTodo.querySelector(".newTask-tag");
+    const color = newTodo.querySelector("#newTask-color");
 
-  // connect this DOM card with the task object
-  newTodo.dataset.id = task.id;
+    // connect this DOM card with the task object
+    newTodo.dataset.id = task.id;
 
-  // find checkbox inside this specific task card
-  const checkbox = newTodo.querySelector('input[type="checkbox"]');
-  if (checkbox) {
-    // default value based on task.isDone (initially false)
-    checkbox.checked = !!task.isDone;
-    checkbox.addEventListener("change", () => {
-      if (checkbox.checked) {
-        newTodo.classList.add(
-          "transition-all",
-          "duration-300",
-          "ease-out",
-          "opacity-0",
-          "translate-y-4"
-        );
+    // find checkbox inside this specific task card
+    const checkbox = newTodo.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+        // default value based on task.isDone (initially false)
+        checkbox.checked = !!task.isDone;
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                newTodo.classList.add(
+                    "transition-all",
+                    "duration-300",
+                    "ease-out",
+                    "opacity-0",
+                    "translate-y-4"
+                );
 
-        setTimeout(() => {
-          task.isDone = true;
-          newTodo.classList.add("hidden");
-          moveCompletedTasks();
-          updateTaskCounter(false);
-          updateTaskCounter(true);
-        }, 300);
-      } else {
-        task.isDone = false;
-        newTodo.classList.remove("hidden");
-        newTodo.classList.remove("opacity-0", "translate-y-4");
-        moveCompletedTasks();
-      }
+                setTimeout(() => {
+                    task.isDone = true;
+                    newTodo.classList.add("hidden");
+                    moveCompletedTasks();
+                    updateTaskCounter(false);
+                    updateTaskCounter(true);
+                    //
+                    saveTasksToLocal(taskArray);
+                }, 300);
+            } else {
+                task.isDone = false;
+                newTodo.classList.remove("hidden");
+                newTodo.classList.remove("opacity-0", "translate-y-4");
+                moveCompletedTasks();
+                //
+                updateTaskCounter(false);
+                updateTaskCounter(true);
+                saveTasksToLocal(taskArray);
+            }
+        });
+    }
+
+    // click on operators button for each todo task
+    const operatorsBtn = newTodo.querySelector(".operators-btn");
+    const operatorsBox = newTodo.querySelector(".operators-box");
+    operatorsBtn.addEventListener("click", () => {
+        operatorsBox.classList.toggle("hidden");
     });
-  }
+    // click on Delete
+    const deleteTaskbtn = newTodo.querySelector(".deleteTask-btn");
+    deleteTaskbtn.addEventListener("click", () => {
+        operatorsBox.classList.add("hidden");
+        newTodo.remove();
+        //
+        newEditTemplate.remove();
+        taskArray = taskArray.filter((t) => t.id !== task.id);
 
-  // click on operators button for each todo task
-  const operatorsBtn = newTodo.querySelector(".operators-btn");
-  const operatorsBox = newTodo.querySelector(".operators-box");
-  operatorsBtn.addEventListener("click", () => {
-    operatorsBox.classList.toggle("hidden");
-  });
-  // click on Delete
-  const deleteTaskbtn = newTodo.querySelector(".deleteTask-btn");
-  deleteTaskbtn.addEventListener("click", () => {
-    operatorsBox.classList.add("hidden");
-    newTodo.remove();
-  });
+        updateTaskCounter(false);
+        updateTaskCounter(true);
+        saveTasksToLocal(taskArray);
+    });
 
-  // Click on Edit
-  const editTaskbtn = newTodo.querySelector(".editTask-btn");
-  const editTemplate = document.getElementById("editTask-template");
-  const newEditTemplate = editTemplate.cloneNode(true);
-  newEditTemplate.removeAttribute("id");
-  newEditTemplate.dataset.id = task.id;
+    // Click on Edit
+    const editTaskbtn = newTodo.querySelector(".editTask-btn");
+    const editTemplate = document.getElementById("editTask-template");
+    const newEditTemplate = editTemplate.cloneNode(true);
+    newEditTemplate.removeAttribute("id");
+    newEditTemplate.dataset.id = task.id;
 
-  editTaskbtn.addEventListener("click", () => {
-    newEditTemplate.classList.add("flex");
-    newEditTemplate.classList.remove("hidden");
-    operatorsBox.classList.add("hidden");
-    newEditTemplate.querySelector("#editTitle-inp").value = title.textContent;
-    newEditTemplate.querySelector("#editDesc-inp").value = desc.textContent;
-    const tagelement = newEditTemplate.querySelector("#edit-selectedTag");
+    editTaskbtn.addEventListener("click", () => {
+        newEditTemplate.classList.add("flex");
+        newEditTemplate.classList.remove("hidden");
+        operatorsBox.classList.add("hidden");
+        newEditTemplate.querySelector("#editTitle-inp").value =
+            title.textContent;
+        newEditTemplate.querySelector("#editDesc-inp").value = desc.textContent;
+        const tagelement = newEditTemplate.querySelector("#edit-selectedTag");
 
-    // generateSelectedTagBox(tag.textContent, tagelement);
-    const tagTitle = tag.querySelector(".tag-title")?.textContent;
-    generateSelectedTagBox(tagTitle, tagelement);
+        // generateSelectedTagBox(tag.textContent, tagelement);
+        const tagTitle = tag.querySelector(".tag-title")?.textContent;
+        generateSelectedTagBox(tagTitle, tagelement);
 
-    newTodo.insertAdjacentElement("afterend", newEditTemplate);
-  });
+        newTodo.insertAdjacentElement("afterend", newEditTemplate);
+    });
 
-  // Click on editTask Btn
-  const formEditBtn = newEditTemplate.querySelector("#edit-addTask-btn");
-  formEditBtn.addEventListener("click", () => {
-    newTodo.querySelector("#newTask-title").textContent =
-      newEditTemplate.querySelector("#editTitle-inp").value;
-    newTodo.querySelector("#newTask-desc").textContent =
-      newEditTemplate.querySelector("#editDesc-inp").value;
-    newTodo.querySelector("#newTask-tag").textContent = task.mainTag;
+    // Click on editTask Btn
+    const formEditBtn = newEditTemplate.querySelector("#edit-addTask-btn");
+    formEditBtn.addEventListener("click", () => {
+        newTodo.querySelector("#newTask-title").textContent =
+            newEditTemplate.querySelector("#editTitle-inp").value;
+        newTodo.querySelector("#newTask-desc").textContent =
+            newEditTemplate.querySelector("#editDesc-inp").value;
+        newTodo.querySelector("#newTask-tag").textContent = task.mainTag;
 
-    newEditTemplate.remove();
-  });
-  title.textContent = task.title;
-  desc.textContent = task.desc;
-  applyTagStyle(task.mainTag, tag, color);
-  prioritizingTags(task.mainTag, container, newTodo);
+        newEditTemplate.remove();
+    });
+    title.textContent = task.title;
+    desc.textContent = task.desc;
+    applyTagStyle(task.mainTag, tag, color);
+    prioritizingTags(task.mainTag, container, newTodo);
 }
 
 function moveCompletedTasks() {
-  const container = document.getElementById("completedTasksContainer");
-  const template = document.getElementById("taskDoneTemplate");
-  const doneTasks = taskArray.filter((task) => task.isDone);
-  const todoContainer = document.getElementById("tasksContainer");
-  if (!container || !template) return;
-  container.innerHTML = "";
+    const container = document.getElementById("completedTasksContainer");
+    const template = document.getElementById("taskDoneTemplate");
+    const doneTasks = taskArray.filter((task) => task.isDone);
+    const todoContainer = document.getElementById("tasksContainer");
+    if (!container || !template) return;
+    container.innerHTML = "";
 
-  if (doneTasks.length === 0) {
-    updateTaskCounter(false);
-    updateTaskCounter(true);
-    return;
-  }
-
-  //Create a new card for each task completed.
-  doneTasks.forEach((task) => {
-    const card = template.cloneNode(true);
-    card.classList.remove("hidden");
-    card.removeAttribute("id");
-    card.classList.add("done-card");
-
-    // title
-    const titleEl = card.querySelector("#titleTaskDone");
-    if (titleEl) {
-      titleEl.textContent = task.title;
+    if (doneTasks.length === 0) {
+        updateTaskCounter(false);
+        updateTaskCounter(true);
+        return;
     }
 
-    //set Color based on mainTag to container of done task
+    //Create a new card for each task completed.
+    doneTasks.forEach((task) => {
+        const card = template.cloneNode(true);
+        card.classList.remove("hidden");
+        card.removeAttribute("id");
+        card.classList.add("done-card");
 
-    const colorEl = card.querySelector("#colorOfTaskDone");
-    applyDoneTaskColor(colorEl, task.mainTag)
-
-
-    // Checkbox inside the card is done.
-    const checkbox = card.querySelector('input[type="checkbox"]');
-    if (checkbox) {
-      checkbox.checked = true;
-
-      checkbox.addEventListener("change", () => {
-        task.isDone = checkbox.checked;
-
-        if (todoContainer) {
-          const mainCard = todoContainer.querySelector(
-            `[data-id="${task.id}"]`
-          );
-          if (mainCard) {
-            const topCheckbox = mainCard.querySelector(
-              'input[type="checkbox"]'
-            );
-            if (topCheckbox) {
-              topCheckbox.checked = task.isDone;
-            }
-
-            if (task.isDone) {
-              mainCard.classList.add("hidden");
-            } else {
-              mainCard.classList.remove("hidden");
-              mainCard.classList.add(
-                "transition-all",
-                "duration-300",
-                "ease-out",
-                "opacity-0",
-                "-translate-y-2"
-              );
-
-              setTimeout(() => {
-                mainCard.classList.remove("opacity-0", "-translate-y-2");
-              }, 10);
-            }
-          }
+        // title
+        const titleEl = card.querySelector("#titleTaskDone");
+        if (titleEl) {
+            titleEl.textContent = task.title;
         }
 
-        moveCompletedTasks();
-      });
-    }
+        //set Color based on mainTag to container of done task
 
-    //When done, make sure the top card is hidden.
-    if (todoContainer) {
-      const mainCard = todoContainer.querySelector(`[data-id="${task.id}"]`);
-      if (mainCard) {
-        mainCard.classList.add("hidden");
-      }
-    }
+        const colorEl = card.querySelector("#colorOfTaskDone");
+        applyDoneTaskColor(colorEl, task.mainTag);
 
-    container.appendChild(card);
-  });
-  updateTaskCounter(false);
-  updateTaskCounter(true);
+        // Checkbox inside the card is done.
+        const checkbox = card.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+            checkbox.checked = true;
+
+            checkbox.addEventListener("change", () => {
+                task.isDone = checkbox.checked;
+
+                if (todoContainer) {
+                    const mainCard = todoContainer.querySelector(
+                        `[data-id="${task.id}"]`
+                    );
+                    if (mainCard) {
+                        const topCheckbox = mainCard.querySelector(
+                            'input[type="checkbox"]'
+                        );
+                        if (topCheckbox) {
+                            topCheckbox.checked = task.isDone;
+                        }
+
+                        if (task.isDone) {
+                            mainCard.classList.add("hidden");
+                        } else {
+                            mainCard.classList.remove("hidden");
+                            mainCard.classList.add(
+                                "transition-all",
+                                "duration-300",
+                                "ease-out",
+                                "opacity-0",
+                                "-translate-y-2"
+                            );
+
+                            setTimeout(() => {
+                                mainCard.classList.remove(
+                                    "opacity-0",
+                                    "-translate-y-2"
+                                );
+                            }, 10);
+                        }
+                    }
+                }
+
+                moveCompletedTasks();
+                //
+                updateTaskCounter(false);
+                updateTaskCounter(true);
+                saveTasksToLocal(taskArray);
+            });
+        }
+
+        //When done, make sure the top card is hidden.
+        if (todoContainer) {
+            const mainCard = todoContainer.querySelector(
+                `[data-id="${task.id}"]`
+            );
+            if (mainCard) {
+                mainCard.classList.add("hidden");
+            }
+        }
+
+        container.appendChild(card);
+    });
+    updateTaskCounter(false);
+    updateTaskCounter(true);
 }
-
 
 //get time for sideBar
 
-getTime()
+getTime();
