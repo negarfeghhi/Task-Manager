@@ -1,13 +1,24 @@
 export function prioritizingTags(priority, container, newTodo) {
   switch (priority) {
-    case "پایین":
-      container.insertAdjacentElement("beforeend", newTodo);
+    case "بالا":
+      container.insertAdjacentElement("afterbegin", newTodo);
       break;
     case "متوسط": {
-      const firstLow = Array.from(container.children).find((current) => {
-        const findElement = current.querySelector(".newTask-tag");
-        const title = findElement?.querySelector(".tag-title");
-        return title && title.textContent === "پایین";
+      const tasks = Array.from(container.children);
+      const lastHigh = tasks
+        .filter((el) => {
+          const tag = el.querySelector(".tag-title")?.textContent;
+          return tag === "بالا";
+        })
+        .pop();
+
+      if (lastHigh) {
+        lastHigh.insertAdjacentElement("afterend", newTodo);
+        break;
+      }
+      const firstLow = tasks.find((el) => {
+        const tag = el.querySelector(".tag-title")?.textContent;
+        return tag === "پایین";
       });
 
       if (firstLow) {
@@ -17,9 +28,8 @@ export function prioritizingTags(priority, container, newTodo) {
       }
       break;
     }
-
-    case "بالا":
-      container.insertAdjacentElement("afterbegin", newTodo);
+    case "پایین":
+      container.appendChild(newTodo);
       break;
   }
 }
