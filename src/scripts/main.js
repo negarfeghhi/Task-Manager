@@ -13,10 +13,8 @@ const selected = document.getElementById("selected");
 
 
   addTaskBtn.addEventListener('click',()=>{
-        const taskObj = generateTask();
-
+    const taskObj = generateTask();
     showToDoTasks(taskObj);
-
     selected.classList.add("hidden");
     hideTgs.classList.remove("hidden");
     tagsBox.classList.add("hidden");
